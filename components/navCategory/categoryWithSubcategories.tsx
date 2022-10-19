@@ -18,7 +18,7 @@ export default function CategoryWithSubcategories(c: {
       }
 
       return (
-            <div className="mt-2 pl-2">
+            <>
                   <span
                         className="flex items-center w-full text-lg text-gray-700 dark:text-gray-50"
                         id={encodeURI(c.name)}
@@ -38,17 +38,27 @@ export default function CategoryWithSubcategories(c: {
                               (value: string): JSX.Element => {
                                     if (value == currentSubcategory) {
                                           return (
-                                                <span id={encodeURI(value)} className="py-0.5 px-2 rounded-full bg-zinc-400 dark:bg-zinc-500" onClick={() => {
-                                                      changeSubcategory(value)
-                                                }}>
+                                                <span
+                                                      key={"navigationMainPageSubcategorySwitcher:" + value}
+                                                      id={encodeURI(value)}
+                                                      className="py-0.5 px-2 rounded-full bg-zinc-400 dark:bg-zinc-500"
+                                                      onClick={() => {
+                                                            changeSubcategory(value)
+                                                      }}
+                                                >
                                                       {value}
                                                 </span>
                                           )
                                     } else {
                                           return (
-                                                <span id={encodeURI(value)} className="px-2" onClick={() => {
-                                                      changeSubcategory(value)
-                                                }}>
+                                                <span
+                                                      key={"navigationMainPageSubcategorySwitcher:" + value}
+                                                      id={encodeURI(value)}
+                                                      className="px-2"
+                                                      onClick={() => {
+                                                            changeSubcategory(value)
+                                                      }}
+                                                >
                                                       {value}
                                                 </span>
                                           )
@@ -60,22 +70,23 @@ export default function CategoryWithSubcategories(c: {
                   {c.subCategory.map((value: string): JSX.Element => {
                         const sc = getCategoryByName(value)
                         return (
-                              <span hidden={value != currentSubcategory}>
-                              <div
-                                    className="flex max-w-4xl flex-wrap items-center content-start sm:w-full"
-                              >
-                                    {sc?.links.map((value1: number): JSX.Element => {
-                                          const l = nav.links[value1.toString() as keyof typeof nav.links];
-                                          return (
-                                                      <LinkCard id={l.id} url={l.url} title={l.title} description={l.description} icon={l.icon} tags={l.tags} />
-                                                
-                                          )
-                                    })}
-                                    
-                              </div>
+                              <span hidden={value != currentSubcategory} key={"navigationMainPageDivOfLinksOfSubcategory:"+value}>
+                                    <div
+                                          className="flex max-w-4xl flex-wrap items-center content-start sm:w-full"
+                                    >
+                                          {sc?.links.map((value1: number): JSX.Element => {
+                                                const l = nav.links[value1.toString() as keyof typeof nav.links];
+                                                return (
+                                                      <div key={"navigationMainPageLinksCard:" + value.toString()}>
+                                                            <LinkCard id={l.id} url={l.url} title={l.title} description={l.description} icon={l.icon} tags={l.tags} />
+                                                      </div>
+                                                )
+                                          })}
+
+                                    </div>
                               </span>
                         )
                   })}
-            </div>
+            </>
       )
 }

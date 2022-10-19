@@ -28,7 +28,7 @@ export function SubCategory(c: {
                               // subcategory main item
                         }
                         <a className="flex sticky top-0 justify-between px-2 items-center backdrop-blur-sm w-full text-lg">
-                              <Link href={"/category" + "#" + encodeURI(c.name)}>
+                              <Link href={"/navigation" + "#" + encodeURI(c.name)}>
                                     <span
                                           className="flex sticky top-0 items-center backdrop-blur-sm w-full"
                                     >
@@ -47,7 +47,7 @@ export function SubCategory(c: {
                               {c.subCategory.map((value: string) => {
                                     return (
                                           <li hidden={!categoryOpen} key={encodeURI(c.name)}>
-                                                <Link href={"/category" + "#" + encodeURI(c.name)}>
+                                                <Link href={"/navigation" + "#" + encodeURI(c.name)}>
                                                       <span
                                                             className="flex sticky top-0 justify-between px-2 items-center backdrop-blur-sm w-full text-lg"
                                                       >

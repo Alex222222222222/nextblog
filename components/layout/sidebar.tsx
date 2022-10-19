@@ -62,13 +62,13 @@ export default function Sidebar(
                                                 if (fatherCategory == "") {
                                                       if (subCategory.length > 0) {
                                                             return (
-                                                                  <li key={encodeURI(name)}>
+                                                                  <li key={"categorySidebar:"+encodeURI(name)}>
                                                                         <SubCategory name={name} description={description} subCategory={subCategory} icon={icon} hidden={hidden} />
                                                                   </li>
                                                             )
                                                       } else {
                                                             return (
-                                                                  <li key={encodeURI(name)}>
+                                                                  <li key={"categorySidebar:"+encodeURI(name)}>
                                                                         <SingleCategory name={name} description={description} icon={icon} hidden={hidden} />
                                                                   </li>
                                                             )
