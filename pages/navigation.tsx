@@ -1,4 +1,3 @@
-import Welcome from "../components/widgets/welcome"
 import nav from "../nav.json"
 import SingleCategory from "../components/navCategory/singleCategory"
 import CategoryWithSubcategories from "../components/navCategory/categoryWithSubcategories"
@@ -11,11 +10,15 @@ export default function Category(): JSX.Element {
                               if (fatherCategory == "") {
                                     if (subCategory.length > 0) {
                                           return (
-                                                <CategoryWithSubcategories name={name} description={description} icon={icon} hidden={hidden} links={links} subCategory={subCategory} />
+                                                <div className="mt-2 pl-2" key={"navigationCategoryMainPage:" + encodeURI(name)}>
+                                                      <CategoryWithSubcategories name={name} description={description} icon={icon} hidden={hidden} links={links} subCategory={subCategory} />
+                                                </div>
                                           )
                                     } else {
                                           return (
-                                                <SingleCategory name={name} description={description} icon={icon} hidden={hidden} links={links} />
+                                                <div className="mt-2 pl-2" key={"navigationCategoryMainPage:" + encodeURI(name)}>
+                                                      <SingleCategory name={name} description={description} icon={icon} hidden={hidden} links={links} />
+                                                </div>
                                           )
                                     }
                               } else {
