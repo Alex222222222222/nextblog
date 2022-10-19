@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction, useState } from "react"
+import { useState } from "react"
 import { BsFillMoonStarsFill, BsFillSunFill } from "react-icons/bs"
 import Image from "next/image";
 import { useContext } from "react";
@@ -9,22 +9,6 @@ import { SingleCategory } from "../sidebarCategory/singleCategory";
 import { SubCategory } from "../sidebarCategory/subCategory";
 import { GiCompass } from "react-icons/gi"
 import {HiOutlineClipboardDocument} from "react-icons/hi2"
-
-export class SidebarState {
-      // posts or navigations
-      currentSidebarTab: string;
-      setCurrentSidebarTab: Dispatch<SetStateAction<string>>;
-
-      constructor(
-            isSideBarOpen: boolean,
-            setSideBarOpen: Dispatch<SetStateAction<boolean>>,
-            currentSidebarTab: string,
-            setCurrentSidebarTab: Dispatch<SetStateAction<string>>,
-      ) {
-            this.currentSidebarTab = currentSidebarTab
-            this.setCurrentSidebarTab = setCurrentSidebarTab
-      }
-}
 
 export default function Sidebar(
 ): JSX.Element {
@@ -38,8 +22,6 @@ export default function Sidebar(
 
       const [currentSidebarTab, setCurrentSidebarTab] = useState("")
       const [darkModeIcon, setDarkModeIcon] = useState(themeCtx.isDarkMode)
-
-      let navCategoryOpenList = new Map()
 
 
       function isRequiredSideBarOpen(name: string): boolean {
