@@ -1,4 +1,4 @@
-import { HiOutlineSpeakerWave } from "react-icons/hi2"
+import { GiSpeaker } from "react-icons/gi"
 
 export default function Welcome({ children }: any): JSX.Element {
       return (
@@ -10,7 +10,7 @@ export default function Welcome({ children }: any): JSX.Element {
             '>
                   <span className="py-1 flex">
                         <span className="mx-3 items-center justify-center text-lg pt-0.5">
-                              <HiOutlineSpeakerWave />
+                              <GiSpeaker />
                         </span>
                         {children}
                   </span>
