@@ -9,6 +9,7 @@ import { SingleCategory } from "../sidebarCategory/singleCategory";
 import { SubCategory } from "../sidebarCategory/subCategory";
 import { GiCompass } from "react-icons/gi"
 import { IoDocumentTextOutline } from "react-icons/io5"
+import Link from "next/link";
 
 export default function Sidebar(
 ): JSX.Element {
@@ -88,13 +89,15 @@ export default function Sidebar(
                   <div className="fixed grid bg-white dark:bg-zinc-700 h-full w-16 inset-y-0 rounded-r-3xl shadow-xl shadow-indigo-500/50 dark:shadow-cyan-500/50">
                         <div>
                               <div className="flex items-center justify-center h-16">
+                                    <Link href="/">
                                     <Image
-                                          className="dark:white-filter items-center justify-center"
-                                          src="/favicon.ico"
+                                          className="dark:white-filter items-center justify-center rounded-full"
+                                          src="/img/icon.jpg"
                                           alt="GitHub Logo"
-                                          width={27}
-                                          height={27}
+                                          width={48}
+                                          height={48}
                                     />
+                                    </Link>
                               </div>
                               <ul className="mt-4">
                                     <li key="sidebarNavigations">
