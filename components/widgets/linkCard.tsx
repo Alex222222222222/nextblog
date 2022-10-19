@@ -18,6 +18,7 @@ export default function LinkCard(l: {
                   bg-white dark:bg-zinc-600
                   "
             >
+
                   <div className="h-14 w-full flex">
                         <img
                               className="w-12 h-12 rounded-full bg-gray-200 dark:bg-gray-800 left-0 top-0"
@@ -27,18 +28,21 @@ export default function LinkCard(l: {
                               height="48">
                         </img>
                         <div className="ml-3 mt-0.5">
-                              <a
-                                    href={l.url}
-                                    className="text-lg"
-                              >
-                                    <p className="truncate w-40">{l.title}</p>
-                              </a>
-                              <a
-                                    href={l.url}
-                                    className="text-sm text-gray-600 dark:text-gray-200"
-                              >
-                                    <p className="truncate w-40">{l.description}</p>
-                              </a>
+                              <span className="hover:cursor-pointer" onClick={() => {
+                                    window.open(l.url)
+                              }
+                              }>
+                                    <p className="truncate w-40 text-lg">{l.title}</p>
+                              </span>
+                              <span className="hover:cursor-pointer" onClick={() => {
+                                    window.open(l.url)
+                              }
+                              }>
+                                    <p className="truncate w-40 text-sm text-gray-600 dark:text-gray-200">
+                                          {l.description}
+                                    </p>
+                              </span>
+
                         </div>
                   </div>
 
@@ -62,13 +66,13 @@ export default function LinkCard(l: {
                               }
                         </p>
 
-
-
-                        <a href={l.url} className="mt-1.5 h-4 w-4 rounded-full">
+                        <span className="mt-1.5 h-4 w-4 rounded-full hover:cursor-pointer" onClick={
+                              () => {
+                                    window.open(l.url)
+                              }
+                        }>
                               <BsFillArrowRightCircleFill />
-                        </a>
-
-
+                        </span>
 
                   </div>
 
