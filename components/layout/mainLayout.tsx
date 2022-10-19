@@ -15,8 +15,6 @@ export default function MainLayout({ children }: any) {
               </div>
             </main>
           </div>
-          <div className="flex-shrink-0">
-          </div>
         </div>
       </div>
     </>
