@@ -1,4 +1,4 @@
-import { DynamicIcon } from "../../store/dynamicIcons"
+import { DynamicIcon } from "../widgets/dynamicIcons"
 import { FaAngleRight, FaAngleDown } from "react-icons/fa"
 import { useState } from "react";
 import { BsArrowReturnRight } from "react-icons/bs"

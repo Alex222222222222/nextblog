@@ -1,4 +1,4 @@
-import { DynamicIcon } from "../../store/dynamicIcons";
+import { DynamicIcon } from "../widgets/dynamicIcons";
 import LinkCard from "../widgets/linkCard"
 import nav from "../../nav.json"
 import { useState } from "react";

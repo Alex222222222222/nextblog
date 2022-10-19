@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { DynamicIcon } from "../../store/dynamicIcons"
+import { DynamicIcon } from "../widgets/dynamicIcons"
 
 export function SingleCategory(c: {
       name: string;
