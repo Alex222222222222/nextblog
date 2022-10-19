@@ -9,23 +9,25 @@ import { SubCategory } from "../sidebarCategory/subCategory";
 import { GiCompass } from "react-icons/gi"
 import { IoDocumentTextOutline } from "react-icons/io5"
 import Link from "next/link";
+import { useSidebarContext } from "../../store/sidebarContext";
 
 export default function Sidebar(
 ): JSX.Element {
 
       const themeCtx: { isDarkMode?: boolean; toggleThemeHandler: () => void } =
             useContext(MyThemeContext);
-
       function toggleThemeHandler(): void {
             themeCtx.toggleThemeHandler();
       }
 
-      const [currentSidebarTab, setCurrentSidebarTab] = useState("")
+      const { sidebarState, changeSidebarState } =
+            useSidebarContext()
+
       const [darkModeIcon, setDarkModeIcon] = useState(themeCtx.isDarkMode)
 
 
       function isRequiredSideBarOpen(name: string): boolean {
-            if (currentSidebarTab == name) {
+            if (sidebarState == name) {
                   return true
             } else {
                   return false
@@ -33,7 +35,9 @@ export default function Sidebar(
       }
 
       function setRequiredSideBar(name: string) {
-            setCurrentSidebarTab(name)
+            console.log(name)
+            changeSidebarState(name)
+            console.log(sidebarState)
       }
 
 
@@ -111,7 +115,7 @@ export default function Sidebar(
                                           dark:hover:bg-cyan-500 dark:active:bg-cyan-600 dark:focus:bg-cyan-500
                                           text-xl"
                                                 onClick={() => {
-                                                      if (currentSidebarTab == "navigations") {
+                                                      if (sidebarState == "navigations") {
                                                             setRequiredSideBar("")
                                                       } else {
                                                             setRequiredSideBar("navigations")
@@ -131,7 +135,7 @@ export default function Sidebar(
                                           dark:hover:bg-cyan-500 dark:active:bg-cyan-600 dark:focus:bg-cyan-500
                                           text-xl"
                                                 onClick={() => {
-                                                      if (currentSidebarTab == "posts") {
+                                                      if (sidebarState == "posts") {
                                                             setRequiredSideBar("")
                                                       } else {
                                                             setRequiredSideBar("posts")

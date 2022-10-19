@@ -1,4 +1,4 @@
-import { createContext, ReactElement, useEffect, useState } from "react";
+import { createContext, ReactElement, useEffect, useState, useContext } from "react";
 
 const MyThemeContext = createContext({
   isDarkTheme: true,
@@ -60,6 +60,10 @@ export function MyThemeContextProvider(
 }
 
 export default MyThemeContext;
+
+export function useThemeContext():boolean{
+  return useContext(MyThemeContext).isDarkTheme
+}
 
 export function checkDarkMode():boolean{
   return JSON.parse(
