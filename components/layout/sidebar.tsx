@@ -1,5 +1,4 @@
 import { Dispatch, SetStateAction, useState } from "react"
-import { AiOutlineAlignLeft } from "react-icons/ai"
 import { BsFillMoonStarsFill, BsFillSunFill } from "react-icons/bs"
 import Image from "next/image";
 import { useContext } from "react";
@@ -8,6 +7,8 @@ import { checkDarkMode } from "../../store/myThemeContext";
 import nav from "../../nav.json"
 import { SingleCategory } from "../sidebarCategory/singleCategory";
 import { SubCategory } from "../sidebarCategory/subCategory";
+import { GiCompass } from "react-icons/gi"
+import {HiOutlineClipboardDocument} from "react-icons/hi2"
 
 export class SidebarState {
       // posts or navigations
@@ -121,7 +122,8 @@ export default function Sidebar(
                                           bg-gray-50 dark:bg-zinc-600  
                                           shadow-md  shadow-indigo-500/50 dark:shadow-cyan-500/50
                                           hover:bg-violet-500 active:bg-violet-800 focus:bg-violet-500
-                                          dark:hover:bg-cyan-500 dark:active:bg-cyan-600 dark:focus:bg-cyan-500"
+                                          dark:hover:bg-cyan-500 dark:active:bg-cyan-600 dark:focus:bg-cyan-500
+                                          text-xl"
                                           onClick={() => {
                                                 if (currentSidebarTab == "navigations") {
                                                       setRequiredSideBar("")
@@ -130,7 +132,7 @@ export default function Sidebar(
                                                 }
                                           }}
                                     >
-                                          <AiOutlineAlignLeft />
+                                          <GiCompass />
                                     </button>
                               </li>
                               <li>
@@ -140,7 +142,8 @@ export default function Sidebar(
                                           bg-gray-50 dark:bg-zinc-600  
                                           shadow-md  shadow-indigo-500/50 dark:shadow-cyan-500/50
                                           hover:bg-violet-500 active:bg-violet-800 focus:bg-violet-500
-                                          dark:hover:bg-cyan-500 dark:active:bg-cyan-600 dark:focus:bg-cyan-500"
+                                          dark:hover:bg-cyan-500 dark:active:bg-cyan-600 dark:focus:bg-cyan-500
+                                          text-xl"
                                           onClick={() => {
                                                 if (currentSidebarTab == "posts") {
                                                       setRequiredSideBar("")
@@ -149,7 +152,7 @@ export default function Sidebar(
                                                 }
                                           }}
                                     >
-                                          <AiOutlineAlignLeft />
+                                          <HiOutlineClipboardDocument />
                                     </button>
                               </li>
                               <li>
@@ -160,7 +163,8 @@ export default function Sidebar(
                                           bg-gray-50 dark:bg-zinc-600  
                                           shadow-md  shadow-indigo-500/50 dark:shadow-cyan-500/50
                                           hover:bg-violet-500 active:bg-violet-800 focus:bg-violet-500
-                                          dark:hover:bg-cyan-500 dark:active:bg-cyan-600 dark:focus:bg-cyan-500"
+                                          dark:hover:bg-cyan-500 dark:active:bg-cyan-600 dark:focus:bg-cyan-500
+                                          text-xl"
                                           onClick={() => {
                                                 toggleThemeHandler();
                                                 setDarkModeIcon(checkDarkMode());
