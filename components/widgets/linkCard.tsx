@@ -16,6 +16,7 @@ export default function LinkCard(l: {
                   border-slate-900 rounded-xl border dark:border-slate-50
                   shadow-sm dark:shadow-slate-50 shadow-slate-900
                   bg-white dark:bg-zinc-600
+                  mr-4
                   "
             >
 

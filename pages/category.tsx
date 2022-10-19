@@ -1,8 +1,7 @@
 import Welcome from "../components/widgets/welcome"
 import nav from "../nav.json"
 import SingleCategory from "../components/navCategory/singleCategory"
-
-// TODO every category need a term id
+import CategoryWithSubcategories from "../components/navCategory/categoryWithSubcategories"
 
 export default function Category(): JSX.Element {
       return (
@@ -13,7 +12,7 @@ export default function Category(): JSX.Element {
                         if (fatherCategory == "") {
                               if (subCategory.length > 0) {
                                     return (
-                                         <></> 
+                                          <CategoryWithSubcategories name={name} description={description} icon={icon} hidden={hidden} links={links} subCategory={subCategory} />
                                     )
                               } else {
                                     return (

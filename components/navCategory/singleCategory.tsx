@@ -13,14 +13,14 @@ export default function SingleCategory(c: {
             <div className="mt-2 pl-2">
                   <span
                         className="flex items-center w-full text-lg text-gray-700 dark:text-gray-50"
-                        term-id={"#" + encodeURI(c.name)}
+                        id={encodeURI(c.name)}
                   >
                         <span className="pr-2">
                               <DynamicIcon name={c.icon} ></DynamicIcon>
                         </span>
                         {c.name}
                   </span>
-                  <div className="flex max-w-4xl flex-wrap items-center justify-around sm:w-full">
+                  <div className="flex max-w-4xl flex-wrap items-center content-start sm:w-full">
                         {c.links.map((value: number): JSX.Element => {
                               const l = nav.links[value.toString() as keyof typeof nav.links];
                               return (

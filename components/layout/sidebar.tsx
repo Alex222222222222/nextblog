@@ -8,7 +8,7 @@ import nav from "../../nav.json"
 import { SingleCategory } from "../sidebarCategory/singleCategory";
 import { SubCategory } from "../sidebarCategory/subCategory";
 import { GiCompass } from "react-icons/gi"
-import {HiOutlineClipboardDocument} from "react-icons/hi2"
+import {IoDocumentTextOutline} from "react-icons/io5"
 
 export default function Sidebar(
 ): JSX.Element {
@@ -134,7 +134,7 @@ export default function Sidebar(
                                                 }
                                           }}
                                     >
-                                          <HiOutlineClipboardDocument />
+                                          <IoDocumentTextOutline />
                                     </button>
                               </li>
                               <li>
