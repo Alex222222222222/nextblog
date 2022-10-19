@@ -1,6 +1,5 @@
 import { useState } from "react"
 import { BsFillMoonStarsFill, BsFillSunFill, BsGithub } from "react-icons/bs"
-import Image from "next/image";
 import { useContext } from "react";
 import MyThemeContext from "../../store/myThemeContext";
 import { checkDarkMode } from "../../store/myThemeContext";
@@ -49,26 +48,27 @@ export default function Sidebar(
                   " hidden={!isRequiredSideBarOpen("navigations")}>
                         <div className="ml-16">
                               <div className="mx-2 my-4">
-                                    <Image
+                                    <img
                                           className="dark:white-filter items-center justify-center"
                                           src="/img/iconLarge.png"
                                           alt="GitHub Logo"
                                           width={180}
                                           height={40}
-                                    />
+                                    >
+                                    </img>
 
                                     <ul>
                                           {nav.categories.map(({ name, description, fatherCategory, subCategory, icon, hidden }) => {
                                                 if (fatherCategory == "") {
                                                       if (subCategory.length > 0) {
                                                             return (
-                                                                  <li key={"categorySidebar:"+encodeURI(name)}>
+                                                                  <li key={"categorySidebar:" + encodeURI(name)}>
                                                                         <SubCategory name={name} description={description} subCategory={subCategory} icon={icon} hidden={hidden} />
                                                                   </li>
                                                             )
                                                       } else {
                                                             return (
-                                                                  <li key={"categorySidebar:"+encodeURI(name)}>
+                                                                  <li key={"categorySidebar:" + encodeURI(name)}>
                                                                         <SingleCategory name={name} description={description} icon={icon} hidden={hidden} />
                                                                   </li>
                                                             )
@@ -90,13 +90,14 @@ export default function Sidebar(
                         <div>
                               <div className="flex items-center justify-center h-16">
                                     <Link href="/">
-                                    <Image
-                                          className="dark:white-filter items-center justify-center rounded-full"
-                                          src="/img/icon.jpg"
-                                          alt="GitHub Logo"
-                                          width={48}
-                                          height={48}
-                                    />
+                                          <img
+                                                className="dark:white-filter items-center justify-center rounded-full"
+                                                src="/img/icon.jpg"
+                                                alt="GitHub Logo"
+                                                width={48}
+                                                height={48}
+                                          >
+                                          </img>
                                     </Link>
                               </div>
                               <ul className="mt-4">
@@ -163,7 +164,7 @@ export default function Sidebar(
                         <div className="grid place-self-end mb-4 text-4xl w-full dark:text-white">
                               <div className="place-self-center">
                                     <span className="hover:cursor-pointer" onClick={
-                                          ()=>{
+                                          () => {
                                                 window.open("https://github.com/Alex222222222222")
                                           }
                                     }>
