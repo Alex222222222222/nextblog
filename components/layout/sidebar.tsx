@@ -7,6 +7,7 @@ import MyThemeContext from "../../store/myThemeContext";
 import { checkDarkMode } from "../../store/myThemeContext";
 import nav from "../../nav.json"
 import { SingleCategory } from "../sidebarCategory/singleCategory";
+import { SubCategory } from "../sidebarCategory/subCategory";
 
 export class SidebarState {
       // posts or navigations
@@ -36,6 +37,8 @@ export default function Sidebar(
 
       const [currentSidebarTab, setCurrentSidebarTab] = useState("")
       const [darkModeIcon, setDarkModeIcon] = useState(themeCtx.isDarkMode)
+
+      let navCategoryOpenList = new Map()
 
 
       function isRequiredSideBarOpen(name: string): boolean {
@@ -74,7 +77,11 @@ export default function Sidebar(
                                           {nav.categories.map(({ name, description, fatherCategory, subCategory, icon, hidden }) => {
                                                 if (fatherCategory == "") {
                                                       if (subCategory.length > 0) {
-                                                            // return <SubCategory name={name} description={description} icon={icon} hidden={hidden} subCategory={subCategory} />
+                                                            return (
+                                                                  <li key={encodeURI(name)}>
+                                                                        <SubCategory name={name} description={description} subCategory={subCategory} icon={icon} hidden={hidden} />
+                                                                  </li>
+                                                            )
                                                       } else {
                                                             return (
                                                                   <li key={encodeURI(name)}>
