@@ -6,6 +6,7 @@ import { useContext } from "react";
 import MyThemeContext from "../../store/myThemeContext";
 import { checkDarkMode } from "../../store/myThemeContext";
 import nav from "../../nav.json"
+import { SingleCategory } from "../sidebarCategory/singleCategory";
 
 export class SidebarState {
       // posts or navigations
@@ -23,7 +24,7 @@ export class SidebarState {
       }
 }
 
-function Sidebar(
+export default function Sidebar(
 ): JSX.Element {
 
       const themeCtx: { isDarkMode?: boolean; toggleThemeHandler: () => void } =
@@ -69,7 +70,24 @@ function Sidebar(
                                           height={40}
                                     />
 
-                                    
+                                    <ul>
+                                          {nav.categories.map(({ name, description, fatherCategory, subCategory, icon, hidden }) => {
+                                                if (fatherCategory == "") {
+                                                      if (subCategory.length > 0) {
+                                                            // return <SubCategory name={name} description={description} icon={icon} hidden={hidden} subCategory={subCategory} />
+                                                      } else {
+                                                            return (
+                                                                  <li key={encodeURI(name)}>
+                                                                        <SingleCategory name={name} description={description} icon={icon} hidden={hidden} />
+                                                                  </li>
+                                                            )
+                                                      }
+                                                } else {
+                                                      return ""
+                                                }
+
+                                          })}
+                                    </ul>
 
                               </div>
 
@@ -104,7 +122,6 @@ function Sidebar(
                                                       setRequiredSideBar("navigations")
                                                 }
                                           }}
-                                          onFocus={() => { }}
                                     >
                                           <AiOutlineAlignLeft />
                                     </button>
@@ -148,13 +165,5 @@ function Sidebar(
                         </ul>
                   </div>
             </>
-      )
-}
-
-export default Sidebar
-
-export function SidebarLogo(): JSX.Element {
-      return (
-            <div></div>
       )
 }
