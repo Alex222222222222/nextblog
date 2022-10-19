@@ -24,6 +24,9 @@ export function SubCategory(c: {
       } else {
             return (
                   <>
+                        {
+                              // subcategory main item
+                        }
                         <a className="flex sticky top-0 justify-between px-2 items-center backdrop-blur-sm w-full text-lg">
                               <Link href={"/category" + "#" + encodeURI(c.name)}>
                                     <span
@@ -37,7 +40,29 @@ export function SubCategory(c: {
                                     {categoryOpen ? <FaAngleDown /> : <FaAngleRight />}
                               </span>
                         </a>
-                       
+                        <ul>
+                              {
+                                    // subcategory sub items
+                              }
+                              {c.subCategory.map((value: string) => {
+                                    return (
+                                          <li hidden={!categoryOpen} key={encodeURI(c.name)}>
+                                                <Link href={"/category" + "#" + encodeURI(c.name)}>
+                                                      <span
+                                                            className="flex sticky top-0 justify-between px-2 items-center backdrop-blur-sm w-full text-lg"
+                                                      >
+
+                                                            <span className="flex sticky top-0 items-center backdrop-blur-sm w-full">
+                                                                  <BsArrowReturnRight />
+                                                                  <span className="px-2 text-base">{value}</span>
+                                                            </span>
+                                                      </span>
+                                                </Link>
+                                          </li>
+                                    )
+
+                              })}
+                        </ul>
                   </>
             )
       }

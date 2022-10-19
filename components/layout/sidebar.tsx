@@ -57,7 +57,7 @@ export default function Sidebar(
       return (
             <>
                   <div className="
-                  text-black dark:text-white
+                  text-gray-600 dark:text-white
                   bg-white dark:bg-zinc-600 
                   h-full rounded-r-3xl shadow-xl
                   shadow-indigo-500/50 dark:shadow-cyan-500/50
