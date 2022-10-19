@@ -1,0 +1,65 @@
+{
+      "links": [
+            {
+                  "id": 0,
+                  "url":"https://librex.huazifan.eu.org",
+                  "title":"LibreX",
+                  "description":"My own search engine",
+                  "icon":"",
+                  "tags":["search"],
+                  "category":"default"
+            }
+      ],
+      "tags": [
+            {
+                  "name":"search",
+                  "description":"search",
+                  "hidden": false
+            }
+      ],
+      "categories": [
+            {
+                  "name":"default",
+                  "description":"default",
+                  "fatherCategory":"",
+                  "subCategory":[],
+                  "icon":"BsFillArchiveFill",
+                  "hidden": false
+            },
+            {
+                  "name":"test1",
+                  "description":"default",
+                  "fatherCategory":"",
+                  "subCategory":[
+                        "test2",
+                        "test3"
+                  ],
+                  "icon":"BsFillArchiveFill",
+                  "hidden": false
+            },
+            {
+                  "name":"test2",
+                  "description":"default",
+                  "fatherCategory":"test1",
+                  "subCategory":[],
+                  "icon":"BsFillArchiveFill",
+                  "hidden": false
+            },
+            {
+                  "name":"test3",
+                  "description":"default",
+                  "fatherCategory":"test1",
+                  "subCategory":[],
+                  "icon":"BsFillArchiveFill",
+                  "hidden": false
+            },
+            {
+                  "name":"default5",
+                  "description":"default",
+                  "fatherCategory":"",
+                  "subCategory":[],
+                  "icon":"BsFillArchiveFill",
+                  "hidden": false
+            }
+      ]
+}
