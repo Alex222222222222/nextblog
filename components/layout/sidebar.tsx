@@ -1,16 +1,17 @@
-import { useState } from "react"
+import { useState, useContext } from "react"
+import Link from "next/link";
+
 import { BsFillMoonStarsFill, BsFillSunFill, BsGithub } from "react-icons/bs"
-import { useContext } from "react";
+import { IoDocumentTextOutline } from "react-icons/io5"
+import { GiCompass } from "react-icons/gi"
+
 import MyThemeContext from "../../store/myThemeContext";
 import { checkDarkMode } from "../../store/myThemeContext";
-import nav from "../../nav.json"
-import { SingleCategory } from "../sidebarNavigation/singleCategory";
-import { SubCategory } from "../sidebarNavigation/subCategory";
-import { GiCompass } from "react-icons/gi"
-import { IoDocumentTextOutline } from "react-icons/io5"
-import Link from "next/link";
+
 import { useSidebarContext } from "../../store/sidebarContext";
-import { getSubcategoryByName } from "../../store/nav";
+
+import SidebarNavigation from "../sidebarNavigation/sidebarNavigation";
+import SidebarPosts from "../sidebarPosts/sidebarPosts";
 
 export default function Sidebar(
 ): JSX.Element {
@@ -25,7 +26,6 @@ export default function Sidebar(
             useSidebarContext()
 
       const [darkModeIcon, setDarkModeIcon] = useState(themeCtx.isDarkMode)
-
 
       function isRequiredSideBarOpen(name: string): boolean {
             if (sidebarState == name) {
@@ -44,55 +44,8 @@ export default function Sidebar(
 
       return (
             <>
-                  <div className="
-                  text-gray-600 dark:text-white
-                  bg-white dark:bg-zinc-600 
-                  h-full rounded-r-3xl shadow-xl
-                  shadow-indigo-500/50 dark:shadow-cyan-500/50
-                  fixed inset-y-0
-                  w-80
-                  " hidden={!isRequiredSideBarOpen("navigations")}>
-                        <div className="ml-16">
-                              <div className="mx-2 my-4">
-                                    <img
-                                          className="dark:white-filter items-center justify-center"
-                                          src="/img/iconLarge.png"
-                                          alt="GitHub Logo"
-                                          width={180}
-                                          height={40}
-                                    >
-                                    </img>
-
-                                    <ul>
-                                          {nav.categories.map(({ name, description, fatherCategory, icon, hidden }) => {
-                                                if (fatherCategory == "") {
-                                                      const subCategory = getSubcategoryByName(name)
-                                                      if (subCategory.length > 0) {
-                                                            return (
-                                                                  <li key={"categorySidebar:" + encodeURI(name)}>
-                                                                        <SubCategory name={name} description={description} icon={icon} hidden={hidden} />
-                                                                  </li>
-                                                            )
-                                                      } else {
-                                                            return (
-                                                                  <li key={"categorySidebar:" + encodeURI(name)}>
-                                                                        <SingleCategory name={name} description={description} icon={icon} hidden={hidden} />
-                                                                  </li>
-                                                            )
-                                                      }
-                                                } else {
-                                                      return ""
-                                                }
-
-                                          })}
-                                    </ul>
-
-                              </div>
-                        </div>
-                  </div>
-                  <div className="fixed ml-16" hidden={!isRequiredSideBarOpen("posts")}>
-                        efuhiq3aefuh
-                  </div>
+                  <SidebarNavigation />
+                  <SidebarPosts />
                   <div className="fixed grid bg-white dark:bg-zinc-700 h-full w-16 inset-y-0 rounded-r-3xl shadow-xl shadow-indigo-500/50 dark:shadow-cyan-500/50">
                         <div>
                               <div className="flex items-center justify-center h-16">
