@@ -49,6 +49,7 @@ export default function Sidebar(
                   h-full rounded-r-3xl shadow-xl
                   shadow-indigo-500/50 dark:shadow-cyan-500/50
                   fixed inset-y-0
+                  w-64
                   " hidden={!isRequiredSideBarOpen("navigations")}>
                         <div className="ml-16">
                               <div className="mx-2 my-4">

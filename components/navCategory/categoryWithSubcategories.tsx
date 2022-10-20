@@ -54,7 +54,7 @@ export default function CategoryWithSubcategories(c: {
                                                 <span
                                                       key={"navigationMainPageSubcategorySwitcher:" + value}
                                                       id={encodeURI(value)}
-                                                      className="px-2"
+                                                      className="px-2 py-0.5 rounded-full"
                                                       onClick={() => {
                                                             changeSubcategory(value)
                                                       }}
