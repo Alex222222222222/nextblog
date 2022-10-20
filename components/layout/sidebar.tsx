@@ -4,8 +4,8 @@ import { useContext } from "react";
 import MyThemeContext from "../../store/myThemeContext";
 import { checkDarkMode } from "../../store/myThemeContext";
 import nav from "../../nav.json"
-import { SingleCategory } from "../sidebarCategory/singleCategory";
-import { SubCategory } from "../sidebarCategory/subCategory";
+import { SingleCategory } from "../sidebarNavigation/singleCategory";
+import { SubCategory } from "../sidebarNavigation/subCategory";
 import { GiCompass } from "react-icons/gi"
 import { IoDocumentTextOutline } from "react-icons/io5"
 import Link from "next/link";
