@@ -22,6 +22,72 @@
                   "category":[
                         "BT"
                   ]
+            },
+            {
+                  "id": 2,
+                  "url":"https://www.yubico.com/",
+                  "title":"Yubico Key",
+                  "description":"Get the YubiKey, the #1 security key, offering strong two factor authentication from industry leader Yubico.",
+                  "icon":"/navImg/2.svg",
+                  "tags":["Hardware","Security Key"],
+                  "category":[
+                        "Security Key"
+                  ]
+            },
+            {
+                  "id": 3,
+                  "url":"https://solokeys.com/",
+                  "title":"SoloKeys",
+                  "description":"Get your Solo – SoloKeys | Built with Trussed® ",
+                  "icon":"/navImg/3.png",
+                  "tags":["OpenSource","Hardware","Security Key"],
+                  "category":[
+                        "Security Key"
+                  ]
+            },
+            {
+                  "id": 4,
+                  "url":"https://onlykey.io",
+                  "title":"OnlyKey",
+                  "description":"The only device that works everywhere to secure accounts, email, and communication online. Strong two-factor authentication and professional grade encryption. Use it to log into any device, application, or unlock encrypted drives.",
+                  "icon":"/navImg/4.png",
+                  "tags":["OpenSource","Hardware","Security Key"],
+                  "category":[
+                        "Security Key"
+                  ]
+            },
+            {
+                  "id": 5,
+                  "url":"https://solokeys.com/",
+                  "title":"Nitrokey | Secure your digital life",
+                  "description":"Be prepared for the awesome secure Nitrokey! Subscribe to the upcoming crowdfunding campaign. #SecureYourDigitalLife",
+                  "icon":"/navImg/5.ico",
+                  "tags":["OpenSource","Expensive","Hardware","Security Key"],
+                  "category":[
+                        "Security Key"
+                  ]
+            },
+            {
+                  "id": 6,
+                  "url":"https://www.planetable.xyz",
+                  "title":"Planet",
+                  "description":"Planet is a free and open source software for publishing and following web content, and it does not require a centralized server or service.",
+                  "icon":"/navImg/6.png",
+                  "tags":["OpenSource","Software","Blog","Crypto","IPFS","ENS"],
+                  "category":[
+                        "Blog Software"
+                  ]
+            },
+            {
+                  "id": 7,
+                  "url":"https://www.planetable.xyz",
+                  "title":"色妹妹 船新博客！",
+                  "description":"这是咱的新blog!",
+                  "icon":"/navImg/7.png",
+                  "tags":["OpenSource","Blog","XYN"],
+                  "category":[
+                        "Blog Of Friends"
+                  ]
             }
       ],
       "categories": [
@@ -36,6 +102,41 @@
                   "name":"BT",
                   "description":"BT Search Engines",
                   "fatherCategory":"Search Engine",
+                  "icon":"BsFillArchiveFill",
+                  "hidden": false
+            },
+            {
+                  "name":"Hardware",
+                  "description":"Hardware",
+                  "fatherCategory":"",
+                  "icon":"BsFillArchiveFill",
+                  "hidden": false
+            },
+            {
+                  "name":"Security Key",
+                  "description":"Security Keys",
+                  "fatherCategory":"Hardware",
+                  "icon":"BsFillArchiveFill",
+                  "hidden": false
+            },
+            {
+                  "name":"Blog",
+                  "description":"Blogs",
+                  "fatherCategory":"",
+                  "icon":"BsFillArchiveFill",
+                  "hidden": false
+            },
+            {
+                  "name":"Blog Software",
+                  "description":"Blog Software",
+                  "fatherCategory":"Blog",
+                  "icon":"BsFillArchiveFill",
+                  "hidden": false
+            },
+            {
+                  "name":"Blog Of Friends",
+                  "description":"Blog Of Friends",
+                  "fatherCategory":"Blog",
                   "icon":"BsFillArchiveFill",
                   "hidden": false
             }
