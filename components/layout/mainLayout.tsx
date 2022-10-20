@@ -15,7 +15,7 @@ export default function MainLayout({ children }: any) {
           changeSidebarState("");
           }
         }}
-        className={"flex flex-col min-h-screen items-stretch w-full "+((sidebarState=="")?"ml-16":((window.innerWidth<1024)?"ml-16":"ml-64"))}>
+        className={"flex flex-col min-h-screen items-stretch w-full "+((sidebarState=="")?"ml-16":((window.innerWidth<1024)?"ml-16":"ml-80"))}>
           <div className="flex-grow  text-black dark:text-zinc-50 w-full">
             <main className="flex-shrink-0 flex items-center justify-center">
               <div className="w-full mx-4">

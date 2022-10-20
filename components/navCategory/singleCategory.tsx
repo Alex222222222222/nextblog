@@ -1,14 +1,16 @@
 import { DynamicIcon } from "../widgets/dynamicIcons";
 import LinkCard from "../widgets/linkCard"
 import nav from "../../nav.json"
+import { getLinkByName } from "../../store/nav";
 
 export default function SingleCategory(c: {
       name: string;
       description: string;
       icon: string
       hidden: boolean;
-      links: number[];
 }): JSX.Element {
+      const links = getLinkByName(c.name)
+
       return (
             <>
                   <span
@@ -21,11 +23,10 @@ export default function SingleCategory(c: {
                         {c.name}
                   </span>
                   <div className="flex max-w-4xl flex-wrap items-center content-start sm:w-full">
-                        {c.links.map((value: number): JSX.Element => {
-                              const l = nav.links[value.toString() as keyof typeof nav.links];
+                        {links.map(({id,url,title,description,icon,tags}): JSX.Element => {
                               return (
-                                    <div key={"navigationMainPageLinksCard:" + value.toString()}>
-                                          <LinkCard id={l.id} url={l.url} title={l.title} description={l.description} icon={l.icon} tags={l.tags} />
+                                    <div key={"navigationMainPageLinksCard:" + title.toString()}>
+                                          <LinkCard id={id} url={url} title={title} description={description} icon={icon} tags={tags} />
                                     </div>
                               )
                         })}

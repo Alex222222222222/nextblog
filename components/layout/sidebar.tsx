@@ -10,6 +10,7 @@ import { GiCompass } from "react-icons/gi"
 import { IoDocumentTextOutline } from "react-icons/io5"
 import Link from "next/link";
 import { useSidebarContext } from "../../store/sidebarContext";
+import { getSubcategoryByName } from "../../store/nav";
 
 export default function Sidebar(
 ): JSX.Element {
@@ -49,7 +50,7 @@ export default function Sidebar(
                   h-full rounded-r-3xl shadow-xl
                   shadow-indigo-500/50 dark:shadow-cyan-500/50
                   fixed inset-y-0
-                  w-64
+                  w-80
                   " hidden={!isRequiredSideBarOpen("navigations")}>
                         <div className="ml-16">
                               <div className="mx-2 my-4">
@@ -63,12 +64,13 @@ export default function Sidebar(
                                     </img>
 
                                     <ul>
-                                          {nav.categories.map(({ name, description, fatherCategory, subCategory, icon, hidden }) => {
+                                          {nav.categories.map(({ name, description, fatherCategory, icon, hidden }) => {
                                                 if (fatherCategory == "") {
+                                                      const subCategory = getSubcategoryByName(name)
                                                       if (subCategory.length > 0) {
                                                             return (
                                                                   <li key={"categorySidebar:" + encodeURI(name)}>
-                                                                        <SubCategory name={name} description={description} subCategory={subCategory} icon={icon} hidden={hidden} />
+                                                                        <SubCategory name={name} description={description} icon={icon} hidden={hidden} />
                                                                   </li>
                                                             )
                                                       } else {

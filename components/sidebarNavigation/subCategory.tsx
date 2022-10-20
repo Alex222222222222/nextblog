@@ -3,11 +3,11 @@ import { FaAngleRight, FaAngleDown } from "react-icons/fa"
 import { useState } from "react";
 import { BsArrowReturnRight } from "react-icons/bs"
 import Link from "next/link";
+import { getSubcategoryByName } from "../../store/nav";
 
 export function SubCategory(c: {
       name: string;
       description: string;
-      subCategory: string[];
       icon: string
       hidden: boolean;
 }): JSX.Element {
@@ -15,6 +15,8 @@ export function SubCategory(c: {
       function changeCategoryOpenState() {
             setCategoryOpen(!categoryOpen)
       }
+
+      const subCategory = getSubcategoryByName(c.name)
 
       if (c.hidden) {
             // TODO user authentication required
@@ -44,7 +46,7 @@ export function SubCategory(c: {
                               {
                                     // subcategory sub items
                               }
-                              {c.subCategory.map((value: string) => {
+                              {subCategory.map(({name}) => {
                                     return (
                                           <li hidden={!categoryOpen} key={encodeURI(c.name)}>
                                                 <Link href={"/navigation" + "#" + encodeURI(c.name)}>
@@ -54,7 +56,7 @@ export function SubCategory(c: {
 
                                                             <span className="flex sticky top-0 items-center backdrop-blur-sm w-full">
                                                                   <BsArrowReturnRight />
-                                                                  <span className="px-2 text-base">{value}</span>
+                                                                  <span className="px-2 text-base">{name}</span>
                                                             </span>
                                                       </span>
                                                 </Link>

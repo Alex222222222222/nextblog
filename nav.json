@@ -1,130 +1,43 @@
 {
-      "links": {
-            "0":{
+      "links": [
+            {
                   "id": 0,
                   "url":"https://librex.huazifan.eu.org",
                   "title":"LibreX",
                   "description":"My own search engine",
                   "icon":"/navImg/0.png",
-                  "tags":["search","search1","search2","search3"],
-                  "category":"default"
+                  "tags":["Search","BT"],
+                  "category":[
+                        "Search Engine",
+                        "BT"
+                  ]
             },
-            "1":{
+            {
                   "id": 1,
-                  "url":"https://librex.huazifan.eu.org",
-                  "title":"LibreX",
-                  "description":"My own search engine",
-                  "icon":"/navImg/0.png",
-                  "tags":["search","search1","search2","search3"],
-                  "category":"default"
-            },
-            "2":{
-                  "id": 2,
-                  "url":"https://librex.huazifan.eu.org",
-                  "title":"LibreX",
-                  "description":"My own search engine",
-                  "icon":"/navImg/0.png",
-                  "tags":["search","search1","search2","search3"],
-                  "category":"default"
-            }
-      },
-      "tags": [
-            {
-                  "name":"search",
-                  "description":"search",
-                  "hidden": false
-            },
-            {
-                  "name":"search1",
-                  "description":"search",
-                  "hidden": false
-            },
-            {
-                  "name":"search2",
-                  "description":"search",
-                  "hidden": false
-            },
-            {
-                  "name":"search3",
-                  "description":"search",
-                  "hidden": false
+                  "url":"https://clmmdz.cyou/",
+                  "title":"磁力妹妹",
+                  "description":"磁力妹妹_最新地址发布页",
+                  "icon":"/navImg/1.ico",
+                  "tags":["Search","BT"],
+                  "category":[
+                        "BT"
+                  ]
             }
       ],
       "categories": [
             {
-                  "name":"default",
-                  "description":"default",
+                  "name":"Search Engine",
+                  "description":"Search Engines",
                   "fatherCategory":"",
-                  "subCategory":[],
-                  "links":[0,1,2],
                   "icon":"BsFillArchiveFill",
                   "hidden": false
             },
             {
-                  "name":"test1",
-                  "description":"default",
-                  "fatherCategory":"",
-                  "subCategory":[
-                        "test2",
-                        "test3"
-                  ],
-                  "links":[0,1,2],
+                  "name":"BT",
+                  "description":"BT Search Engines",
+                  "fatherCategory":"Search Engine",
                   "icon":"BsFillArchiveFill",
                   "hidden": false
-            },
-            {
-                  "name":"test2",
-                  "description":"default",
-                  "fatherCategory":"test1",
-                  "subCategory":[],
-                  "links":[0,1,2],
-                  "icon":"BsFillArchiveFill",
-                  "hidden": false
-            },
-            {
-                  "name":"test3",
-                  "description":"default",
-                  "fatherCategory":"test1",
-                  "subCategory":[],
-                  "links":[0,1],
-                  "icon":"BsFillArchiveFill",
-                  "hidden": false
-            },
-            {
-                  "name":"default5",
-                  "description":"default",
-                  "fatherCategory":"",
-                  "subCategory":[],
-                  "links":[0,1,2],
-                  "icon":"BsFillArchiveFill",
-                  "hidden": false
-            },
-            {
-                  "name":"default6",
-                  "description":"default",
-                  "fatherCategory":"",
-                  "subCategory":[],
-                  "links":[0,1,2],
-                  "icon":"BsFillArchiveFill",
-                  "hidden": false
-            },
-            {
-                  "name":"default7",
-                  "description":"default",
-                  "fatherCategory":"",
-                  "subCategory":[],
-                  "links":[0,1,2],
-                  "icon":"BsFillArchiveFill",
-                  "hidden": false
-            },
-            {
-                  "name":"default8",
-                  "description":"default",
-                  "fatherCategory":"",
-                  "subCategory":[],
-                  "links":[0,1,2],
-                  "icon":"BsFillArchiveFill",
-                  "hidden": false
-            }    
+            }
       ]
 }

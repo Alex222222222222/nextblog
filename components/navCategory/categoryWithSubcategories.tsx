@@ -2,20 +2,21 @@ import { DynamicIcon } from "../widgets/dynamicIcons";
 import LinkCard from "../widgets/linkCard"
 import nav from "../../nav.json"
 import { useState } from "react";
-import { getCategoryByName } from "../../store/nav";
+import { getCategoryByName, getSubcategoryByName, getLinkByName } from "../../store/nav";
 
 export default function CategoryWithSubcategories(c: {
       name: string;
       description: string;
       icon: string
       hidden: boolean;
-      subCategory: string[];
-      links: number[];
 }): JSX.Element {
       const [currentSubcategory, setSubcategory] = useState("")
       function changeSubcategory(name: string) {
             setSubcategory(name)
       }
+
+      const subCategory = getSubcategoryByName(c.name)
+      const links = getLinkByName(c.name)
 
       return (
             <>
@@ -28,57 +29,67 @@ export default function CategoryWithSubcategories(c: {
                         </span>
                         {c.name}
                   </span>
-                  <span
-                        className="
+                  <div className="flex max-w-4xl flex-wrap items-center content-start sm:w-full">
+                        {links.map(({ id, url, title, description, icon, tags }): JSX.Element => {
+                              return (
+                                    <div key={"navigationMainPageLinksCard:" + title.toString()}>
+                                          <LinkCard id={id} url={url} title={title} description={description} icon={icon} tags={tags} />
+                                    </div>
+                              )
+                        })}
+                  </div>
+                  <div className="my-1.5">
+                        <span
+                              className="
                         py-1 px-2 rounded-full
                         bg-zinc-300 dark:bg-zinc-700
                         "
-                  >
-                        {c.subCategory.map(
-                              (value: string): JSX.Element => {
-                                    if (value == currentSubcategory) {
-                                          return (
-                                                <span
-                                                      key={"navigationMainPageSubcategorySwitcher:" + value}
-                                                      id={encodeURI(value)}
-                                                      className="py-0.5 px-2 rounded-full bg-zinc-400 dark:bg-zinc-500"
-                                                      onClick={() => {
-                                                            changeSubcategory(value)
-                                                      }}
-                                                >
-                                                      {value}
-                                                </span>
-                                          )
-                                    } else {
-                                          return (
-                                                <span
-                                                      key={"navigationMainPageSubcategorySwitcher:" + value}
-                                                      id={encodeURI(value)}
-                                                      className="px-2 py-0.5 rounded-full"
-                                                      onClick={() => {
-                                                            changeSubcategory(value)
-                                                      }}
-                                                >
-                                                      {value}
-                                                </span>
-                                          )
+                        >
+                              {subCategory.map(
+                                    ({ name }): JSX.Element => {
+                                          if (name == currentSubcategory) {
+                                                return (
+                                                      <span
+                                                            key={"navigationMainPageSubcategorySwitcher:" + name}
+                                                            id={encodeURI(name)}
+                                                            className="py-0.5 px-2 rounded-full bg-zinc-400 dark:bg-zinc-500"
+                                                            onClick={() => {
+                                                                  changeSubcategory(name)
+                                                            }}
+                                                      >
+                                                            {name}
+                                                      </span>
+                                                )
+                                          } else {
+                                                return (
+                                                      <span
+                                                            key={"navigationMainPageSubcategorySwitcher:" + name}
+                                                            id={encodeURI(name)}
+                                                            className="px-2 py-0.5 rounded-full"
+                                                            onClick={() => {
+                                                                  changeSubcategory(name)
+                                                            }}
+                                                      >
+                                                            {name}
+                                                      </span>
+                                                )
+                                          }
                                     }
-                              }
-                        )}
-                  </span>
+                              )}
+                        </span>
+                  </div>
 
-                  {c.subCategory.map((value: string): JSX.Element => {
-                        const sc = getCategoryByName(value)
+                  {subCategory.map(({ name }): JSX.Element => {
+                        const links = getLinkByName(name)
                         return (
-                              <span hidden={value != currentSubcategory} key={"navigationMainPageDivOfLinksOfSubcategory:"+value}>
+                              <span hidden={name != currentSubcategory} key={"navigationMainPageDivOfLinksOfSubcategory:" + encodeURI(name)}>
                                     <div
                                           className="flex max-w-4xl flex-wrap items-center content-start sm:w-full"
                                     >
-                                          {sc?.links.map((value1: number): JSX.Element => {
-                                                const l = nav.links[value1.toString() as keyof typeof nav.links];
+                                          {links.map(({ id, url, title, description, icon, tags }): JSX.Element => {
                                                 return (
-                                                      <div key={"navigationMainPageLinksCard:" + value.toString()}>
-                                                            <LinkCard id={l.id} url={l.url} title={l.title} description={l.description} icon={l.icon} tags={l.tags} />
+                                                      <div key={"navigationMainPageLinksCard:" + id.toString()}>
+                                                            <LinkCard id={id} url={url} title={title} description={description} icon={icon} tags={tags} />
                                                       </div>
                                                 )
                                           })}
