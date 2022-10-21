@@ -6,6 +6,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "framer-motion": "^7.6.1",
     "gray-matter": "^4.0.3",
     "next": "latest",
     "react": "18.1.0",

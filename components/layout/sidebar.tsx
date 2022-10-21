@@ -1,6 +1,7 @@
 import { useState, useContext } from "react"
 import Link from "next/link";
 import Image from "next/image";
+import { motion, useAnimation } from "framer-motion";
 
 import { BsFillMoonStarsFill, BsFillSunFill, BsGithub } from "react-icons/bs"
 import { IoDocumentTextOutline } from "react-icons/io5"
@@ -41,7 +42,6 @@ export default function Sidebar(
             changeSidebarState(name)
             console.log(sidebarState)
       }
-
 
       return (
             <>
