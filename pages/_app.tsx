@@ -4,15 +4,19 @@ import MainLayout from "../components/layout/mainLayout";
 import { MyThemeContextProvider } from "../store/myThemeContext";
 import { SidebarContextWrapper } from "../store/sidebarContext";
 
+import { LazyMotion, domAnimation } from "framer-motion";
+
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <MyThemeContextProvider>
-      <SidebarContextWrapper>
-        <MainLayout>
-          <Component {...pageProps} />
-        </MainLayout>
-      </SidebarContextWrapper>
-    </MyThemeContextProvider>
+    <LazyMotion features={domAnimation}>
+      <MyThemeContextProvider>
+        <SidebarContextWrapper>
+          <MainLayout>
+            <Component {...pageProps} />
+          </MainLayout>
+        </SidebarContextWrapper>
+      </MyThemeContextProvider>
+    </LazyMotion>
   );
 }
 
