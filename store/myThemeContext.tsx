@@ -1,5 +1,7 @@
 import { createContext, ReactElement, useEffect, useState, useContext } from "react";
 
+import { motion, useAnimationControls } from "framer-motion";
+
 const MyThemeContext = createContext({
   isDarkTheme: true,
   toggleThemeHandler: () => { },
@@ -12,8 +14,17 @@ interface ThemePropsInterface {
 export function MyThemeContextProvider(
   props: ThemePropsInterface
 ): ReactElement {
+
+  const spring = {
+    type: 'spring',
+    stiffness: 700,
+    damping: 30,
+  }
+
   const [isDarkTheme, setIsDarkTheme] = useState(true);
   useEffect(() => initialThemeHandler());
+
+  const themeAnimationControls = useAnimationControls()
 
   function isLocalStorageEmpty(): boolean {
     return !localStorage.getItem("isDarkTheme");
@@ -39,6 +50,11 @@ export function MyThemeContextProvider(
     const isDarkTheme: boolean = JSON.parse(
       localStorage.getItem("isDarkTheme")!
     );
+    if (isDarkTheme) {
+      themeAnimationControls.start({ opacity: [1, 0, 1], backgroundColor: ["black", "gray","white"] })
+    } else {
+      themeAnimationControls.start({ opacity: [1, 0, 1], backgroundColor: ["white", "gray","black"] })
+    }
     setIsDarkTheme(!isDarkTheme);
     toggleDarkClassToBody();
     setValueToLocalStorage();
@@ -54,18 +70,24 @@ export function MyThemeContextProvider(
 
   return (
     <MyThemeContext.Provider value={{ isDarkTheme: true, toggleThemeHandler }}>
-      {props.children}
+      <motion.div
+        layout
+        animate={themeAnimationControls}
+        transition={{type:"spring",duration:0.3}}
+      >
+        {props.children}
+      </motion.div>
     </MyThemeContext.Provider>
   );
 }
 
 export default MyThemeContext;
 
-export function useThemeContext():boolean{
+export function useThemeContext(): boolean {
   return useContext(MyThemeContext).isDarkTheme
 }
 
-export function checkDarkMode():boolean{
+export function checkDarkMode(): boolean {
   return JSON.parse(
     localStorage.getItem("isDarkTheme")!
   );
