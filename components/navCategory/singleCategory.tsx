@@ -1,6 +1,5 @@
 import { DynamicIcon } from "../widgets/dynamicIcons";
 import LinkCard from "../widgets/linkCard"
-import nav from "../../nav.json"
 import { getLinkByName } from "../../store/nav";
 
 export default function SingleCategory(c: {

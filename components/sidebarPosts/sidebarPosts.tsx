@@ -4,6 +4,10 @@ import { PostCategory } from "../../pages/api/postCategories"
 
 import { useEffect, useState } from "react"
 
+import SingleCategory from "../sidebarPosts/category"
+
+import Image from "next/image"
+
 export default function SidebarPosts(
 ): JSX.Element {
 
@@ -41,21 +45,21 @@ export default function SidebarPosts(
                   <div className="ml-16">
                         <div className="mx-2 my-4">
                               <>
-                                    <img
+                                    <Image
                                           className="dark:white-filter items-center justify-center"
                                           src="/img/iconLarge.png"
                                           alt="GitHub Logo"
                                           width={180}
                                           height={40}
                                     >
-                                    </img>
+                                    </Image>
 
                                     {
                                           ((true)) ? (<ul>
-                                                {data.map(({ name }): JSX.Element => {
+                                                {data.map(({ name,icon,postsCNT }): JSX.Element => {
                                                       return (
                                                             <li key={encodeURI(name)}>
-                                                                  {postIsLoading.toString()}
+                                                                 <SingleCategory name={name} icon={icon} cnt={postsCNT} />
                                                             </li>
                                                       )
                                                 })}

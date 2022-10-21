@@ -1,8 +1,7 @@
 import { DynamicIcon } from "../widgets/dynamicIcons";
 import LinkCard from "../widgets/linkCard"
-import nav from "../../nav.json"
 import { useState } from "react";
-import { getCategoryByName, getSubcategoryByName, getLinkByName } from "../../store/nav";
+import { getSubcategoryByName, getLinkByName } from "../../store/nav";
 
 export default function CategoryWithSubcategories(c: {
       name: string;

@@ -1,5 +1,6 @@
 import { useState, useContext } from "react"
 import Link from "next/link";
+import Image from "next/image";
 
 import { BsFillMoonStarsFill, BsFillSunFill, BsGithub } from "react-icons/bs"
 import { IoDocumentTextOutline } from "react-icons/io5"
@@ -50,14 +51,13 @@ export default function Sidebar(
                         <div>
                               <div className="flex items-center justify-center h-16">
                                     <Link href="/">
-                                          <img
+                                          <Image
                                                 className="dark:white-filter items-center justify-center rounded-full"
                                                 src="/img/icon.jpg"
                                                 alt="GitHub Logo"
                                                 width={48}
                                                 height={48}
-                                          >
-                                          </img>
+                                          />
                                     </Link>
                               </div>
                               <ul className="mt-4">

@@ -1,24 +1,20 @@
 import Link from "next/link";
 import { DynamicIcon } from "../widgets/dynamicIcons"
 
-export function SingleCategory(c: {
+export default function SingleCategory(c: {
       name: string;
-      description: string;
       icon: string
-      hidden: boolean;
+      cnt:number;
 }): JSX.Element {
-      // TODO user authentication required
-      if (c.hidden) {
-            return (
-                  <></>
-            )
-      }
       return (
-            <Link href={"/navigation" + "#" + encodeURI(c.name)}>
+            <Link href={"/post/category" + "#" + encodeURI(c.name)}>
                   <a className="flex sticky top-0 justify-between px-2 items-center backdrop-blur-sm w-full text-lg">
                         <span className="flex sticky top-0 items-center backdrop-blur-sm w-full">
                               <DynamicIcon name={c.icon} />
                               <span className="px-2">{c.name}</span>
+                        </span>
+                        <span className="px-2.5 py-0.5 my-0.5 rounded-full bg-gray-100 dark:bg-gray-600">
+                              {c.cnt}
                         </span>
                   </a>
             </Link>

@@ -7,6 +7,8 @@ import { SingleCategory } from "./singleCategory"
 
 import { useSidebarContext } from "../../store/sidebarContext"
 
+import Image from "next/image"
+
 export default function SidebarNavigation(): JSX.Element {
       
       const { sidebarState, changeSidebarState } =
@@ -23,14 +25,14 @@ export default function SidebarNavigation(): JSX.Element {
                   " hidden={!(sidebarState=="navigations")}>
                   <div className="ml-16">
                         <div className="mx-2 my-4">
-                              <img
+                              <Image
                                     className="dark:white-filter items-center justify-center"
                                     src="/img/iconLarge.png"
                                     alt="GitHub Logo"
                                     width={180}
                                     height={40}
                               >
-                              </img>
+                              </Image>
 
                               <ul>
                                     {nav.categories.map(({ name, description, fatherCategory, icon, hidden }) => {

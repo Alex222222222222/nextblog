@@ -3,6 +3,8 @@ import categories from "../../posts/category.json"
 
 import type { NextApiRequest, NextApiResponse } from 'next'
 
+const returnData = postCategoryData()
+
 export type PostCategory = {
       name: string,
       icon: string,
@@ -13,6 +15,10 @@ export default function handler(
       req: NextApiRequest,
             res: NextApiResponse<PostCategory[]>,
 ) {
+      res.status(200).json(returnData)
+}
+
+function postCategoryData():PostCategory[]{
       const allPostData = getSortedPostData()
       const allPostCategory = categories.category.map(({ name, icon }): PostCategory => {
             return {
@@ -32,5 +38,6 @@ export default function handler(
             })
       });
 
-      res.status(200).json(allPostCategory)
+
+      return allPostCategory
 }
