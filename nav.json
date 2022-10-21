@@ -92,6 +92,13 @@
       ],
       "categories": [
             {
+                  "name":"Blog",
+                  "description":"Blogs",
+                  "fatherCategory":"",
+                  "icon":"BsFillArchiveFill",
+                  "hidden": false
+            },
+            {
                   "name":"Search Engine",
                   "description":"Search Engines",
                   "fatherCategory":"",
@@ -116,13 +123,6 @@
                   "name":"Security Key",
                   "description":"Security Keys",
                   "fatherCategory":"Hardware",
-                  "icon":"BsFillArchiveFill",
-                  "hidden": false
-            },
-            {
-                  "name":"Blog",
-                  "description":"Blogs",
-                  "fatherCategory":"",
                   "icon":"BsFillArchiveFill",
                   "hidden": false
             },

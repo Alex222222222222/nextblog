@@ -1,11 +1,11 @@
 import { DynamicIcon } from "../widgets/dynamicIcons"
-import { FaAngleRight, FaAngleDown } from "react-icons/fa"
+import { FaAngleRight } from "react-icons/fa"
 import { useState } from "react";
 import { BsArrowReturnRight } from "react-icons/bs"
 import Link from "next/link";
 import { getSubcategoryByName } from "../../store/nav";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 
 export function SubCategory(c: {
       name: string;
@@ -41,26 +41,22 @@ export function SubCategory(c: {
                                     </span>
                               </Link>
                               <span onClick={changeCategoryOpenState}>
-                                    {categoryOpen ? <FaAngleDown /> : <FaAngleRight />}
+                                    <m.div animate={categoryOpen ? { rotate: 90 } : {}}>
+                                          <FaAngleRight />
+                                    </m.div>
                               </span>
                         </a>
-                        <ul>
+                        <m.ul animate={categoryOpen ? {} : { opacity: 0, height: [24,12,0] }} transition={{duration:0.1}}>
                               {
                                     // subcategory sub items
                               }
                               {subCategory.map(({ name }) => {
                                     return (
-                                          <li hidden={!categoryOpen} key={encodeURI(c.name)}>
+                                          <li key={encodeURI(c.name)}>
                                                 <Link href={"/navigation" + "#" + encodeURI(c.name)}>
                                                       <span
                                                             className="flex sticky top-0 justify-between px-2 items-center backdrop-blur-sm w-full text-lg"
                                                       >
-                                                            <motion.div layout transition={{
-                                                                  type: "spring",
-                                                                  stiffness: 700,
-                                                                  damping: 30,
-                                                                  duration: 2,
-                                                            }} />
                                                             <span className="flex sticky top-0 items-center backdrop-blur-sm w-full">
                                                                   <BsArrowReturnRight />
                                                                   <span className="px-2 text-base">{name}</span>
@@ -71,7 +67,7 @@ export function SubCategory(c: {
                                     )
 
                               })}
-                        </ul>
+                        </m.ul>
                   </>
             )
       }
