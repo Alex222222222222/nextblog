@@ -1,5 +1,7 @@
 import Link from "next/link";
-import { DynamicIcon } from "../widgets/dynamicIcons"
+import { useEffect, useState } from "react";
+import { FaBeer } from "react-icons/fa";
+import { DynamicIcon } from "../widgets/dynamicIcons";
 
 export function SingleCategory(c: {
       name: string;

@@ -26,7 +26,6 @@ export default function SidebarPosts(
                   fetch('/api/postCategories')
                         .then((res) => res.json())
                         .then((data) => {
-                              console.log("test")
                               setData(data)
                               setPostLoading(false)
                         })
