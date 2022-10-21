@@ -1,13 +1,33 @@
-import nav from "../../nav.json"
-
-import { getSubcategoryByName } from "../../store/nav"
-
 import { useSidebarContext } from "../../store/sidebarContext"
 
-export default function SidebarPosts(): JSX.Element {
+import { PostCategory } from "../../pages/api/postCategories"
+
+import { useEffect, useState } from "react"
+
+export default function SidebarPosts(
+): JSX.Element {
 
       const { sidebarState, changeSidebarState } =
             useSidebarContext()
+
+      const [postIsLoading, setPostLoading] = useState(false)
+      const tempPostCategory: PostCategory[] = []
+      const [data, setData] = useState(tempPostCategory)
+
+      useEffect(() => {
+            // if I did not do this, this will kind of constantly refetching for unknown reason
+            if (data.length == 0) {
+                  setPostLoading(true)
+                  fetch('/api/postCategories')
+                        .then((res) => res.json())
+                        .then((data) => {
+                              console.log("test")
+                              setData(data)
+                              setPostLoading(false)
+                        })
+            }
+      }
+      )
 
       return (
             <div className="
@@ -20,15 +40,29 @@ export default function SidebarPosts(): JSX.Element {
                   " hidden={!(sidebarState == "posts")}>
                   <div className="ml-16">
                         <div className="mx-2 my-4">
-                              <img
-                                    className="dark:white-filter items-center justify-center"
-                                    src="/img/iconLarge.png"
-                                    alt="GitHub Logo"
-                                    width={180}
-                                    height={40}
-                              >
-                              </img>
+                              <>
+                                    <img
+                                          className="dark:white-filter items-center justify-center"
+                                          src="/img/iconLarge.png"
+                                          alt="GitHub Logo"
+                                          width={180}
+                                          height={40}
+                                    >
+                                    </img>
 
+                                    {
+                                          ((true)) ? (<ul>
+                                                {data.map(({ name }): JSX.Element => {
+                                                      return (
+                                                            <li key={encodeURI(name)}>
+                                                                  {postIsLoading.toString()}
+                                                            </li>
+                                                      )
+                                                })}
+                                          </ul>) : (<></>)
+                                    }
+
+                              </>
                         </div>
                   </div>
             </div>
