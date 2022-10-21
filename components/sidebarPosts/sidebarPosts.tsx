@@ -3,7 +3,7 @@ import { useSidebarContext } from "../../store/sidebarContext"
 import { PostCategory } from "../../pages/api/postCategories"
 
 import { useEffect, useState } from "react"
-import { motion } from "framer-motion"
+import { motion, TargetAndTransition } from "framer-motion"
 
 import SingleCategory from "../sidebarPosts/category"
 
@@ -34,12 +34,25 @@ export default function SidebarPosts(
       }
       )
 
+      function determineSidebarAnimate():TargetAndTransition {
+            if (sidebarState == "init" ) {
+                  return {}
+            } else if (sidebarState == "posts") {
+                  return {
+                        x:0,
+                  }
+            } else {
+                  return {
+                        x:-250,
+                  }
+            }
+      }
+
       return (
             <motion.div
-                  animate={{
-                        opacity: (sidebarState == "posts" ? 1 : 0),
-                        x: (sidebarState == "posts" ? 0 : -250),
-                  }}
+                  animate={
+                        determineSidebarAnimate()
+                  }
                   transition={{ type: "spring" }}
             >
                   <div className="
@@ -50,6 +63,7 @@ export default function SidebarPosts(
                   fixed inset-y-0
                   w-80
                   "
+                  hidden={sidebarState != "posts"}
                   >
                         <div className="ml-16">
                               <div className="mx-2 my-4">

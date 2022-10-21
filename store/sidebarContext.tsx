@@ -1,4 +1,5 @@
 import { useContext, createContext, useState} from "react";
+import { useAnimationControls, animationControls} from "framer-motion";
 
 export const SidebarContext = createContext({
       sidebarState: "",
@@ -8,7 +9,7 @@ export const SidebarContext = createContext({
 export function SidebarContextWrapper(
       {children}:any
 ) {
-      const [sidebarState, changeSidebarState]= useState("")
+      const [sidebarState, changeSidebarState]= useState("init")
 
       return (
             <SidebarContext.Provider value={{sidebarState,changeSidebarState}}>

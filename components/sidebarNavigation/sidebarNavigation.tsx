@@ -6,7 +6,7 @@ import { SubCategory } from "./subCategory"
 import { SingleCategory } from "./singleCategory"
 
 import { useSidebarContext } from "../../store/sidebarContext"
-import { m } from "framer-motion"
+import { m, TargetAndTransition } from "framer-motion"
 
 import Image from "next/image"
 
@@ -15,12 +15,23 @@ export default function SidebarNavigation(): JSX.Element {
       const { sidebarState, changeSidebarState } =
             useSidebarContext()
 
+      function determineSidebarAnimate(): TargetAndTransition {
+            if (sidebarState == "init") {
+                  return {}
+            } else if (sidebarState == "navigations") {
+                  return {
+                        x: 0,
+                  }
+            } else {
+                  return {
+                        x: -250,
+                  }
+            }
+      }
+
       return (
             <m.div
-                  animate={{
-                        opacity: (sidebarState == "navigations" ? 1 : 0),
-                        x: (sidebarState == "navigations" ? 0 : -250),
-                  }}
+                  animate={determineSidebarAnimate()}
                   transition={{ type: "spring" }}
             >
                   <div className="
@@ -31,6 +42,7 @@ export default function SidebarNavigation(): JSX.Element {
                   fixed inset-y-0
                   w-80
                   "
+                  hidden={sidebarState != "navigations"}
                   >
                         <div className="ml-16">
                               <div className="mx-2 my-4">

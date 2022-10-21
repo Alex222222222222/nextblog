@@ -1,7 +1,7 @@
 import { useState, useContext } from "react"
 import Link from "next/link";
 import Image from "next/image";
-import { motion, useAnimation } from "framer-motion";
+import { m, useAnimationControls } from "framer-motion";
 
 import { BsFillMoonStarsFill, BsFillSunFill, BsGithub } from "react-icons/bs"
 import { IoDocumentTextOutline } from "react-icons/io5"
@@ -43,8 +43,10 @@ export default function Sidebar(
             console.log(sidebarState)
       }
 
+      const sidebarAnimationControls = useAnimationControls()
+
       return (
-            <>
+            <>    
                   <SidebarNavigation />
                   <SidebarPosts />
                   <div className="fixed grid bg-white dark:bg-zinc-700 h-full w-16 inset-y-0 rounded-r-3xl shadow-xl shadow-indigo-500/50 dark:shadow-cyan-500/50">
