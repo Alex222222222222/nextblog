@@ -3,7 +3,7 @@ import Header from "./header";
 import Sidebar from "./sidebar";
 import { checkDarkMode } from "../../store/myThemeContext";
 
-import { m } from "framer-motion";
+import { m, TargetAndTransition } from "framer-motion";
 
 export default function MainLayout(
   { children }: any,
@@ -12,6 +12,16 @@ export default function MainLayout(
 
   const minWidth = 800
 
+  function changMainPageWidthAnimation():TargetAndTransition{
+    if( sidebarState == "init" ){
+      return {}
+    } else if (sidebarState=="" || window.innerWidth< minWidth) {
+      return {width:window.innerWidth-64}
+    } else {
+      return {width:window.innerWidth-320, x:256}
+    }
+  }
+
   return (
     <>
       <div
@@ -19,12 +29,14 @@ export default function MainLayout(
       >
         <Sidebar />
         <m.div
+        transition={{type:"spring",duration:0.5}}
+        animate={changMainPageWidthAnimation()}
           onClick={() => {
             if (window.innerWidth < minWidth) {
               changeSidebarState("");
             }
           }}
-          className={"flex flex-col min-h-screen items-stretch w-full " + ((sidebarState == "" || sidebarState == "init") ? "ml-16" : ((window.innerWidth < minWidth) ? "ml-16" : "ml-80"))}>
+          className={"flex flex-col min-h-screen items-stretch ml-16"} >
           <div className="flex-grow  text-black dark:text-zinc-50 w-full">
             <main className="flex-shrink-0 flex items-center justify-center">
               <div className="w-full mx-4">

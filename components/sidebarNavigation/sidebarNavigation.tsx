@@ -20,10 +20,12 @@ export default function SidebarNavigation(): JSX.Element {
                   return {}
             } else if (sidebarState == "navigations") {
                   return {
+                        opacity:1,
                         x: 0,
                   }
             } else {
                   return {
+                        opacity:0,
                         x: -250,
                   }
             }
@@ -32,7 +34,7 @@ export default function SidebarNavigation(): JSX.Element {
       return (
             <m.div
                   animate={determineSidebarAnimate()}
-                  transition={{ type: "spring" }}
+                  transition={{ type: "transition" }}
             >
                   <div className="
                   text-gray-600 dark:text-white
@@ -42,7 +44,7 @@ export default function SidebarNavigation(): JSX.Element {
                   fixed inset-y-0
                   w-80
                   "
-                  hidden={sidebarState != "navigations"}
+                  hidden={sidebarState=="init"}
                   >
                         <div className="ml-16">
                               <div className="mx-2 my-4">
