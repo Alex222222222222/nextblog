@@ -46,14 +46,14 @@ export function SubCategory(c: {
                                     </m.div>
                               </span>
                         </a>
-                        <m.ul animate={categoryOpen ? {} : { opacity: 0, height: [24,12,0] }} transition={{duration:0.1}}>
+                        <m.ul animate={categoryOpen ? {} : { opacity: 0, height: 0}} transition={{duration:0.1}}>
                               {
                                     // subcategory sub items
                               }
                               {subCategory.map(({ name }) => {
                                     return (
-                                          <li key={encodeURI(c.name)}>
-                                                <Link href={"/navigation" + "#" + encodeURI(c.name)}>
+                                          <li key={"sidebarNavigationSubcategoryItems:"+encodeURI(name)}>
+                                                <Link href={"/navigation" + "#" + encodeURI(name)}>
                                                       <span
                                                             className="flex sticky top-0 justify-between px-2 items-center backdrop-blur-sm w-full text-lg"
                                                       >

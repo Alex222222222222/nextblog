@@ -15,7 +15,7 @@ export function DynamicIcon(c: { name: string }): JSX.Element {
         .then((data) => {
           if (data && data.path && data.viewBox) {
             setIcon(
-              <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox={data.viewBox} height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+              <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox={data.viewBox} height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
                 <path d={data.path}></path>
               </svg>
             )
