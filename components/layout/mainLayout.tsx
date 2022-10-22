@@ -29,6 +29,8 @@ export default function MainLayout(
       >
         <Sidebar />
         <m.div
+        layoutScroll
+        style={{ overflow: "scroll" }}
         transition={{type:"spring",duration:0.5}}
         animate={changMainPageWidthAnimation()}
           onClick={() => {

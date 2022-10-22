@@ -43,8 +43,6 @@ export default function Sidebar(
             console.log(sidebarState)
       }
 
-      const sidebarAnimationControls = useAnimationControls()
-
       return (
             <>    
                   <SidebarNavigation />

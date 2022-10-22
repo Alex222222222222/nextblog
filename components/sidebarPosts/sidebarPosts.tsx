@@ -8,6 +8,7 @@ import { motion, TargetAndTransition } from "framer-motion"
 import SingleCategory from "../sidebarPosts/category"
 
 import Image from "next/image"
+import { time } from "console"
 
 export default function SidebarPosts(
 ): JSX.Element {
@@ -33,24 +34,23 @@ export default function SidebarPosts(
       }
       )
 
-      function determineSidebarAnimate():TargetAndTransition {
-            if (sidebarState == "init" ) {
-                  return {}
-            } else if (sidebarState == "posts") {
+      function determineSidebarAnimate(): TargetAndTransition {
+            if (sidebarState == "posts") {
                   return {
-                        opacity:1,
-                        x:0,
+                        opacity: 1,
+                        x: 0,
                   }
             } else {
                   return {
-                        opacity:0,
-                        x:-250,
+                        opacity: 0,
+                        x: -250,
                   }
             }
       }
 
       return (
             <motion.div
+                  initial={false}
                   animate={
                         determineSidebarAnimate()
                   }
@@ -64,7 +64,6 @@ export default function SidebarPosts(
                   fixed inset-y-0
                   w-80
                   "
-                  hidden={sidebarState=="init"}
                   >
                         <div className="ml-16">
                               <div className="mx-2 my-4">
