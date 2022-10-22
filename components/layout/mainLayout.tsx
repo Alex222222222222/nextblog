@@ -7,27 +7,12 @@ import { m, TargetAndTransition, useAnimationControls } from "framer-motion";
 
 import { checkDarkMode } from "../../lib/myThemeContext";
 
-const useWidth = () => {
-	const [width, setWidth] = useState(0); // default width, detect on server.
-	const handleResize = () => setWidth(window.innerWidth);
-	useEffect(() => {
-		if (width == 0 && typeof window !== "undefined") {
-			setWidth(window.innerWidth)
-		}
-	})
-	useEffect(() => {
-		window.addEventListener('resize', handleResize);
-		return () => window.removeEventListener('resize', handleResize);
-	}, [handleResize]);
-	return width;
-};
+import { useWidth, minWidth } from "../../lib/windowWidth";
 
 export default function MainLayout(
 	{ children }: any,
 ) {
 	const { sidebarState, changeSidebarState } = useSidebarContext()
-
-	const minWidth = 800
 
 	function changMainPageWidthAnimation(): TargetAndTransition {
 		const width = useWidth()

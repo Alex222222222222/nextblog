@@ -27,22 +27,14 @@ export default function LinkCard(l: {
                               width="48"
                               height="48">
                         </img>
+                        <Link href={"/links/"+l.id.toString()}>
                         <div className="ml-3 mt-0.5">
-                              <span className="hover:cursor-pointer" onClick={() => {
-                                    window.open(l.url)
-                              }
-                              }>
-                                    <p className="truncate w-40 text-lg">{l.title}</p>
-                              </span>
-                              <span className="hover:cursor-pointer" onClick={() => {
-                                    window.open(l.url)
-                              }
-                              }>
-                                    <p className="truncate w-40 text-sm text-gray-600 dark:text-gray-200">
-                                          {l.description}
-                                    </p>
-                              </span>
+                              <p className="truncate w-40 text-lg">{l.title}</p>
+                              <p className="truncate w-40 text-sm text-gray-600 dark:text-gray-200">
+                                    {l.description}
+                              </p>
                         </div>
+                        </Link>
                   </div>
 
                   <hr className="h-px bg-gray-600 border-0 dark:bg-gray-200" />
@@ -52,12 +44,12 @@ export default function LinkCard(l: {
                               {
                                     l.tags.map((value): JSX.Element => {
                                           return (
-                                                <span key={"mainNavigationPageInsideLinkCardTags:"+value}>
-                                                <Link href={"/tags#" + encodeURI(value)}>
-                                                      <span className="rounded-full bg-gray-200 dark:bg-zinc-700 px-2 mr-1">
-                                                            {value}
-                                                      </span>
-                                                </Link>
+                                                <span key={"mainNavigationPageInsideLinkCardTags:" + value}>
+                                                      <Link href={"/tags#" + encodeURI(value)}>
+                                                            <span className="rounded-full bg-gray-200 dark:bg-zinc-700 px-2 mr-1">
+                                                                  {value}
+                                                            </span>
+                                                      </Link>
                                                 </span>
                                           )
                                     })

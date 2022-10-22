@@ -17,6 +17,8 @@ export default function CategoryWithSubcategories(c: {
       const subCategory = getSubcategoryByName(c.name)
       const links = getLinkByName(c.name)
 
+
+      // TODO add animation when open sub category
       return (
             <>
                   <span
