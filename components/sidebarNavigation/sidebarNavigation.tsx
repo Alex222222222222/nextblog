@@ -9,6 +9,8 @@ import { useSidebarContext } from "../../lib/sidebarContext"
 import { m, TargetAndTransition } from "framer-motion"
 
 import Image from "next/image"
+import Link from "next/link"
+import { BiCategory } from "react-icons/bi"
 
 export default function SidebarNavigation(): JSX.Element {
 
@@ -18,12 +20,12 @@ export default function SidebarNavigation(): JSX.Element {
       function determineSidebarAnimate(): TargetAndTransition {
             if (sidebarState == "navigations") {
                   return {
-                        opacity:1,
+                        opacity: 1,
                         x: 0,
                   }
             } else {
                   return {
-                        opacity:0,
+                        opacity: 0,
                         x: -250,
                   }
             }
@@ -46,14 +48,30 @@ export default function SidebarNavigation(): JSX.Element {
                   >
                         <div className="ml-16">
                               <div className="mx-2 my-4">
-                                    <Image
-                                          className="dark:white-filter items-center justify-center"
-                                          src="/img/iconLarge.png"
-                                          alt="GitHub Logo"
-                                          width={180}
-                                          height={40}
-                                    >
-                                    </Image>
+                                    <div className="text-3xl mb-2 ml-2 ">
+                                          Navigations
+                                    </div>
+
+                                    <hr className="py-px"></hr>
+
+                                    <Link href={"/nav/category"}>
+                                          <a className="flex sticky top-0 justify-between px-2 items-center backdrop-blur-sm w-full text-lg">
+                                                <span className="flex sticky top-0 items-center backdrop-blur-sm w-full">
+                                                      <BiCategory />
+                                                      <span className="px-2">All Categories</span>
+                                                </span>
+                                          </a>
+                                    </Link>
+                                    <Link href={"/nav/tag"}>
+                                          <a className="flex sticky top-0 justify-between px-2 items-center backdrop-blur-sm w-full text-lg">
+                                                <span className="flex sticky top-0 items-center backdrop-blur-sm w-full">
+                                                      <BiCategory />
+                                                      <span className="px-2">All Tags</span>
+                                                </span>
+                                          </a>
+                                    </Link>
+
+                                    <hr className="py-px"></hr>
 
                                     <ul>
                                           {nav.categories.map(({ name, description, fatherCategory, icon, hidden }) => {
