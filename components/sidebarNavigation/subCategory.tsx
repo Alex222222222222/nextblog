@@ -33,12 +33,13 @@ export function SubCategory(c: {
 				}
 				<a className="flex sticky top-0 justify-between px-2 items-center backdrop-blur-sm w-full text-lg">
 					<Link href={"/nav/category" + "#" + encodeURI(c.name)}>
-						<span
+						<m.span
+							whileTap={{scale:0.7}}
 							className="flex sticky top-0 items-center backdrop-blur-sm w-full"
 						>
 							<DynamicIcon name={c.icon} />
 							<span className="px-2">{c.name}</span>
-						</span>
+						</m.span>
 					</Link>
 					<span onClick={changeCategoryOpenState}>
 						<m.div animate={categoryOpen ? { rotate: 90 } : {}}>

@@ -1,7 +1,6 @@
 import Link from "next/link";
-import { useEffect, useState } from "react";
-import { FaBeer } from "react-icons/fa";
 import { DynamicIcon } from "../widgets/dynamicIcons";
+import { m } from "framer-motion";
 
 export function SingleCategory(c: {
       name: string;
@@ -18,10 +17,13 @@ export function SingleCategory(c: {
       return (
             <Link href={"/nav/category" + "#" + encodeURI(c.name)}>
                   <a className="flex sticky top-0 justify-between px-2 items-center backdrop-blur-sm w-full text-lg">
-                        <span className="flex sticky top-0 items-center backdrop-blur-sm w-full">
+                        <m.span
+                              whileTap={{ scale: 0.7 }}
+                              className="flex sticky top-0 items-center backdrop-blur-sm w-full"
+                        >
                               <DynamicIcon name={c.icon} />
                               <span className="px-2">{c.name}</span>
-                        </span>
+                        </m.span>
                   </a>
             </Link>
       )

@@ -5,6 +5,7 @@ import { getSubcategoryByName, getLinkByName } from "../../lib/nav";
 
 import { LayoutGroup, m } from "framer-motion";
 import { off } from "process";
+import { on } from "events";
 
 export default function CategoryWithSubcategories(c: {
       name: string;
@@ -41,51 +42,58 @@ export default function CategoryWithSubcategories(c: {
                               )
                         })}
                   </div>
+
                   <div className="my-1.5">
-                        <LayoutGroup
+                        <span
+                              className="py-1 px-2 rounded-full bg-zinc-300 dark:bg-zinc-700"
                         >
-                              <span
-                                    className="py-1 px-2 rounded-full bg-zinc-300 dark:bg-zinc-700"
-                              >
 
-                                    {subCategory.map(
-                                          ({ name }): JSX.Element => {
-                                                return (
-                                                      <m.span
-                                                            variants={{
-                                                                  initial: {
-                                                                        background: ((name == currentSubcategory) ? "rgb(161 161 170)" : "rgb(212 212 216)")
-                                                                  },
-                                                                  on: { background: "rgb(161 161 170)" },
-                                                                  off: { background: "rgb(212 212 216)" }
-                                                            }}
-                                                            initial={"initial"}
-                                                            animate={(name == currentSubcategory) ? "on" : "off"}
-                                                            key={"navigationMainPageSubcategorySwitcher:" + name}
-                                                            id={encodeURI(name)}
-                                                            className="py-0.5 px-2 rounded-full dark:bg-zinc-500"
-                                                            onClick={() => {
-                                                                  if (name == currentSubcategory) {
-                                                                        changeSubcategory("")
-                                                                  } else {
-                                                                        changeSubcategory(name)
-                                                                  }
-                                                            }}
-                                                      >
-                                                            {name}
-                                                      </m.span>
-                                                )
-                                          }
-                                    )}
+                              {subCategory.map(
+                                    ({ name }): JSX.Element => {
+                                          return (
+                                                <m.span
+                                                      transition={{ duration: 0.5 }}
+                                                      variants={{
+                                                            initial: {
+                                                                  background: ((name == currentSubcategory) ? "rgb(161 161 170)" : "rgb(212 212 216)")
+                                                            },
+                                                            on: { background: "rgb(161 161 170)" },
+                                                            off: { background: "rgb(212 212 216)" }
+                                                      }}
+                                                      initial={"initial"}
+                                                      animate={(name == currentSubcategory) ? "on" : "off"}
+                                                      key={"navigationMainPageSubcategorySwitcher:" + name}
+                                                      id={encodeURI(name)}
+                                                      className="py-0.5 px-2 rounded-full dark:bg-zinc-500"
+                                                      onClick={() => {
+                                                            if (name == currentSubcategory) {
+                                                                  changeSubcategory("")
+                                                            } else {
+                                                                  changeSubcategory(name)
+                                                            }
+                                                      }}
+                                                >
+                                                      {name}
+                                                </m.span>
+                                          )
+                                    }
+                              )}
 
-                              </span>
-                        </LayoutGroup>
+                        </span>
                   </div>
 
                   {subCategory.map(({ name }): JSX.Element => {
                         const links = getLinkByName(name)
                         return (
-                              <span hidden={name != currentSubcategory} key={"navigationMainPageDivOfLinksOfSubcategory:" + encodeURI(name)}>
+                              <m.div
+                                    variants={{
+                                          off: {opacity:[1,0,0,0,0,0], height:0},
+                                          on: {opacity:1, height:"auto"}
+                                    }}
+                                    initial={false}
+                                    animate={(name != currentSubcategory)?"off":"on"}
+                                    key={"navigationMainPageDivOfLinksOfSubcategory:" + encodeURI(name)}
+                              >
                                     <div
                                           className="flex max-w-4xl flex-wrap items-center content-start sm:w-full"
                                     >
@@ -98,7 +106,7 @@ export default function CategoryWithSubcategories(c: {
                                           })}
 
                                     </div>
-                              </span>
+                              </m.div>
                         )
                   })}
             </>

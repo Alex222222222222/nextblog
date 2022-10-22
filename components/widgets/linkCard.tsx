@@ -46,7 +46,7 @@ export default function LinkCard(l: {
                                           return (
                                                 <span key={"mainNavigationPageInsideLinkCardTags:" + value}>
                                                       <Link href={"/tags#" + encodeURI(value)}>
-                                                            <span className="rounded-full bg-gray-200 dark:bg-zinc-700 px-2 mr-1">
+                                                            <span className="rounded-full bg-gray-200 dark:bg-zinc-700 px-2 mr-1 whitespace-nowrap">
                                                                   {value}
                                                             </span>
                                                       </Link>
