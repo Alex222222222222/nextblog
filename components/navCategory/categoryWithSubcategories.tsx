@@ -3,6 +3,9 @@ import LinkCard from "../widgets/linkCard"
 import { useState } from "react";
 import { getSubcategoryByName, getLinkByName } from "../../lib/nav";
 
+import { LayoutGroup, m } from "framer-motion";
+import { off } from "process";
+
 export default function CategoryWithSubcategories(c: {
       name: string;
       description: string;
@@ -16,7 +19,6 @@ export default function CategoryWithSubcategories(c: {
 
       const subCategory = getSubcategoryByName(c.name)
       const links = getLinkByName(c.name)
-
 
       // TODO add animation when open sub category
       return (
@@ -40,44 +42,44 @@ export default function CategoryWithSubcategories(c: {
                         })}
                   </div>
                   <div className="my-1.5">
-                        <span
-                              className="
-                        py-1 px-2 rounded-full
-                        bg-zinc-300 dark:bg-zinc-700
-                        "
+                        <LayoutGroup
                         >
-                              {subCategory.map(
-                                    ({ name }): JSX.Element => {
-                                          if (name == currentSubcategory) {
+                              <span
+                                    className="py-1 px-2 rounded-full bg-zinc-300 dark:bg-zinc-700"
+                              >
+
+                                    {subCategory.map(
+                                          ({ name }): JSX.Element => {
                                                 return (
-                                                      <span
+                                                      <m.span
+                                                            variants={{
+                                                                  initial: {
+                                                                        background: ((name == currentSubcategory) ? "rgb(161 161 170)" : "rgb(212 212 216)")
+                                                                  },
+                                                                  on: { background: "rgb(161 161 170)" },
+                                                                  off: { background: "rgb(212 212 216)" }
+                                                            }}
+                                                            initial={"initial"}
+                                                            animate={(name == currentSubcategory) ? "on" : "off"}
                                                             key={"navigationMainPageSubcategorySwitcher:" + name}
                                                             id={encodeURI(name)}
-                                                            className="py-0.5 px-2 rounded-full bg-zinc-400 dark:bg-zinc-500"
+                                                            className="py-0.5 px-2 rounded-full dark:bg-zinc-500"
                                                             onClick={() => {
-                                                                  changeSubcategory(name)
+                                                                  if (name == currentSubcategory) {
+                                                                        changeSubcategory("")
+                                                                  } else {
+                                                                        changeSubcategory(name)
+                                                                  }
                                                             }}
                                                       >
                                                             {name}
-                                                      </span>
-                                                )
-                                          } else {
-                                                return (
-                                                      <span
-                                                            key={"navigationMainPageSubcategorySwitcher:" + name}
-                                                            id={encodeURI(name)}
-                                                            className="px-2 py-0.5 rounded-full"
-                                                            onClick={() => {
-                                                                  changeSubcategory(name)
-                                                            }}
-                                                      >
-                                                            {name}
-                                                      </span>
+                                                      </m.span>
                                                 )
                                           }
-                                    }
-                              )}
-                        </span>
+                                    )}
+
+                              </span>
+                        </LayoutGroup>
                   </div>
 
                   {subCategory.map(({ name }): JSX.Element => {
