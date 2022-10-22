@@ -3,7 +3,7 @@ import { FaAngleRight } from "react-icons/fa"
 import { useState } from "react";
 import { BsArrowReturnRight } from "react-icons/bs"
 import Link from "next/link";
-import { getSubcategoryByName } from "../../store/nav";
+import { getSubcategoryByName } from "../../lib/nav";
 
 import { m } from "framer-motion";
 

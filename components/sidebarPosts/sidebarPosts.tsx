@@ -1,4 +1,4 @@
-import { useSidebarContext } from "../../store/sidebarContext"
+import { useSidebarContext } from "../../lib/sidebarContext"
 
 import { PostCategory } from "../../pages/api/postCategories"
 

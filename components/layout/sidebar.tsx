@@ -7,10 +7,10 @@ import { BsFillMoonStarsFill, BsFillSunFill, BsGithub } from "react-icons/bs"
 import { IoDocumentTextOutline } from "react-icons/io5"
 import { GiCompass } from "react-icons/gi"
 
-import MyThemeContext from "../../store/myThemeContext";
-import { checkDarkMode } from "../../store/myThemeContext";
+import MyThemeContext from "../../lib/myThemeContext";
+import { checkDarkMode } from "../../lib/myThemeContext";
 
-import { useSidebarContext } from "../../store/sidebarContext";
+import { useSidebarContext } from "../../lib/sidebarContext";
 
 import SidebarNavigation from "../sidebarNavigation/sidebarNavigation";
 import SidebarPosts from "../sidebarPosts/sidebarPosts";

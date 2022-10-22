@@ -1,8 +1,8 @@
 import "../styles/globals.css";
 import type { AppProps } from "next/app";
 import MainLayout from "../components/layout/mainLayout";
-import { MyThemeContextProvider } from "../store/myThemeContext";
-import { SidebarContextWrapper } from "../store/sidebarContext";
+import { MyThemeContextProvider } from "../lib/myThemeContext";
+import { SidebarContextWrapper } from "../lib/sidebarContext";
 
 import { LazyMotion, domAnimation } from "framer-motion";
 

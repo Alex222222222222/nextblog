@@ -1,4 +1,4 @@
-import {  getSortedPostData } from "../../store/posts";
+import {  getSortedPostData } from "../../lib/posts";
 import categories from "../../posts/category.json"
 
 import type { NextApiRequest, NextApiResponse } from 'next'

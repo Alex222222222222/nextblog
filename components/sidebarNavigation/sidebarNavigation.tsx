@@ -1,11 +1,11 @@
 import nav from "../../nav.json"
 
-import { getSubcategoryByName } from "../../store/nav"
+import { getSubcategoryByName } from "../../lib/nav"
 
 import { SubCategory } from "./subCategory"
 import { SingleCategory } from "./singleCategory"
 
-import { useSidebarContext } from "../../store/sidebarContext"
+import { useSidebarContext } from "../../lib/sidebarContext"
 import { m, TargetAndTransition } from "framer-motion"
 
 import Image from "next/image"
