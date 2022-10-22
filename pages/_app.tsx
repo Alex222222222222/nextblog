@@ -4,7 +4,7 @@ import MainLayout from "../components/layout/mainLayout";
 import { MyThemeContextProvider } from "../lib/myThemeContext";
 import { SidebarContextWrapper } from "../lib/sidebarContext";
 
-import { LazyMotion, domAnimation } from "framer-motion";
+import { LazyMotion, domAnimation, AnimatePresence } from "framer-motion";
 
 function MyApp({ Component, pageProps }: AppProps) {
 	return (

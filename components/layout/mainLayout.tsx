@@ -3,7 +3,24 @@ import Header from "./header";
 import Sidebar from "./sidebar";
 import { useEffect, useState } from "react";
 
-import { m, TargetAndTransition } from "framer-motion";
+import { m, TargetAndTransition, useAnimationControls } from "framer-motion";
+
+import { checkDarkMode } from "../../lib/myThemeContext";
+
+const useWidth = () => {
+	const [width, setWidth] = useState(0); // default width, detect on server.
+	const handleResize = () => setWidth(window.innerWidth);
+	useEffect(() => {
+		if (width == 0 && typeof window !== "undefined") {
+			setWidth(window.innerWidth)
+		}
+	})
+	useEffect(() => {
+		window.addEventListener('resize', handleResize);
+		return () => window.removeEventListener('resize', handleResize);
+	}, [handleResize]);
+	return width;
+};
 
 export default function MainLayout(
 	{ children }: any,
@@ -13,39 +30,43 @@ export default function MainLayout(
 	const minWidth = 800
 
 	function changMainPageWidthAnimation(): TargetAndTransition {
+		const width = useWidth()
 		if (sidebarState == "init") {
-			if (typeof window !== "undefined") {
-				return { width: useWidth() - 64 }
-			} else {
-				return {}
-			}
-		} else if (sidebarState == "" || window.innerWidth < minWidth) {
-			return { width: useWidth() - 64 }
+			return { width: width - 64 }
+		} else if (sidebarState == "" || width < minWidth) {
+			return { width: width - 64 }
 		} else {
-			return { width: useWidth() - 320, x: 256 }
+			return { width: width - 320, x: 256 }
 		}
 	}
 
-	const useWidth = () => {
-		const [width, setWidth] = useState(0); // default width, detect on server.
-		const handleResize = () => setWidth(window.innerWidth);
-		useEffect(() => {
-			window.addEventListener('resize', handleResize);
-			return () => window.removeEventListener('resize', handleResize);
-		}, [handleResize]);
-		return width;
-	};
+	useEffect(() => {
+		if (sidebarState == "init") {
+			changeSidebarState("")
+		}
+	})
+
+	const changePageAnimationControl= useAnimationControls()
+
+	if (typeof window !== "undefined"){
+		useEffect(()=>{
+			if (checkDarkMode()) {
+				changePageAnimationControl.start({ opacity: [1, 0, 1], color: ["black", "gray", "black"] })
+			} else {
+				changePageAnimationControl.start({ opacity: [1, 0, 1], color: ["white", "gray", "white"] })
+			}
+		},[window.location.href,window.location.pathname])
+	}
 
 	return (
 		<>
-			<div
+			<m.div
+				animate={changePageAnimationControl}
 				className="flex h-full antialiased text-gray-900 bg-zinc-200 dark:bg-zinc-800 dark:text-light"
 			>
 				<Sidebar />
 				<m.div
 					initial={false}
-					layoutScroll
-					style={{ overflow: "scroll" }}
 					transition={{ type: "spring", duration: 0.5 }}
 					animate={changMainPageWidthAnimation()}
 					onClick={() => {
@@ -58,12 +79,12 @@ export default function MainLayout(
 						<main className="flex-shrink-0 flex items-center justify-center">
 							<div className="w-full px-4">
 								<Header />
-								{children}
+										{children}
 							</div>
 						</main>
 					</div>
 				</m.div>
-			</div>
+			</m.div>
 		</>
 	);
 }
