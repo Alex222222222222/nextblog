@@ -7,17 +7,17 @@ import { SidebarContextWrapper } from "../store/sidebarContext";
 import { LazyMotion, domAnimation } from "framer-motion";
 
 function MyApp({ Component, pageProps }: AppProps) {
-  return (
-    <LazyMotion features={domAnimation}>
-      <MyThemeContextProvider>
-        <SidebarContextWrapper>
-          <MainLayout>
-            <Component {...pageProps} />
-          </MainLayout>
-        </SidebarContextWrapper>
-      </MyThemeContextProvider>
-    </LazyMotion>
-  );
+	return (
+		<LazyMotion features={domAnimation}>
+			<MyThemeContextProvider>
+				<SidebarContextWrapper>
+					<MainLayout>
+						<Component {...pageProps} />
+					</MainLayout>
+				</SidebarContextWrapper>
+			</MyThemeContextProvider>
+		</LazyMotion>
+	);
 }
 
 export default MyApp;
