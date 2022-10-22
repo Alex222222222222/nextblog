@@ -29,6 +29,7 @@ module.exports = {
 		triangles: ['responsive'], // defaults to []
 	    },
 	    plugins: [
+		require('tailwind-scrollbar-hide'),
 		require('tailwindcss-triangles')({
 		  componentPrefix: 'c-',        // defaults to 'c-'
 		  defaultSize: '1em',           // defaults to '1em'

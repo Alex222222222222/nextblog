@@ -40,7 +40,7 @@ export default function LinkCard(l: {
                   <hr className="h-px bg-gray-600 border-0 dark:bg-gray-200" />
 
                   <div className="flex">
-                        <p className="mt-1 truncate w-52 text-sm flex">
+                        <p className="mt-1 flex-nowrap w-52 text-sm flex overflow-x-scroll scrollbar-hide">
                               {
                                     l.tags.map((value): JSX.Element => {
                                           return (
