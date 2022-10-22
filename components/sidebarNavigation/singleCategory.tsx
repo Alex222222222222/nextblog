@@ -16,7 +16,7 @@ export function SingleCategory(c: {
             )
       }
       return (
-            <Link href={"/navigation" + "#" + encodeURI(c.name)}>
+            <Link href={"/nav/category" + "#" + encodeURI(c.name)}>
                   <a className="flex sticky top-0 justify-between px-2 items-center backdrop-blur-sm w-full text-lg">
                         <span className="flex sticky top-0 items-center backdrop-blur-sm w-full">
                               <DynamicIcon name={c.icon} />
