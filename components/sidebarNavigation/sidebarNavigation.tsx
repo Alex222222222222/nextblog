@@ -8,7 +8,6 @@ import { SingleCategory } from "./singleCategory"
 import { useSidebarContext } from "../../lib/sidebarContext"
 import { m, TargetAndTransition } from "framer-motion"
 
-import Image from "next/image"
 import Link from "next/link"
 import { BiCategory } from "react-icons/bi"
 

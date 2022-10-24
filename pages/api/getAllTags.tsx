@@ -1,13 +1,9 @@
 import { NextApiRequest,NextApiResponse } from "next"
 
-import nav from "../../nav.json"
+import { getAllTags } from "../../lib/tag"
 
 const allTags:string[] = getAllTags()
 
-function getAllTags():string[] {
-      const tags = nav.links.map((link) => link.tags).flat()
-      return tags
-}
 
 export default function handler(
 	req: NextApiRequest,

@@ -1,8 +1,36 @@
-import { useState } from "react"
+import TagCategoryWithName from "../../components/nav/tagCategoryWithName"
+import { getAllTags } from "../../lib/tag"
 
-export default function Tag():JSX.Element{
+export function getStaticProps(): {
+      props: {
+            allTags: string[]
+      }
+} {
+      return {
+            props: {
+                  allTags: getAllTags()
+            }
+      }
+}
 
-      const [allTags, setAllTags] = useState<string[]>([])
+export default function Tag({ allTags }: {
+      allTags: string[]
+}): JSX.Element {
 
-      return (<></>)
+      return (
+            <div
+                  className="ml-2"
+            >
+                  {allTags?.map((value): JSX.Element => {
+                        return (
+                              <div
+                                    key={"tagsMainPageLinksOfTagsWithName:" + value}
+                              >
+                                    <TagCategoryWithName name={value} />
+                              </div>
+                        )
+                  }
+                  )}
+            </div>
+      )
 }

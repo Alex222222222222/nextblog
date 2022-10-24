@@ -1,6 +1,6 @@
 import nav from "../../nav.json"
-import SingleCategory from "../../components/navCategory/singleCategory"
-import CategoryWithSubcategories from "../../components/navCategory/categoryWithSubcategories"
+import SingleCategory from "../../components/nav/singleCategory"
+import CategoryWithSubcategories from "../../components/nav/categoryWithSubcategories"
 import { getSubcategoryByName } from "../../lib/nav"
 
 export default function Category(): JSX.Element {
