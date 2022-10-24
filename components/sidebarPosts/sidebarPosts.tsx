@@ -8,7 +8,6 @@ import { motion, TargetAndTransition } from "framer-motion"
 import SingleCategory from "../sidebarPosts/category"
 
 import Image from "next/image"
-import { time } from "console"
 
 export default function SidebarPosts(
 ): JSX.Element {

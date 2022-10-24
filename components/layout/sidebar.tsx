@@ -38,9 +38,7 @@ export default function Sidebar(
       }
 
       function setRequiredSideBar(name: string) {
-            console.log(name)
             changeSidebarState(name)
-            console.log(sidebarState)
       }
 
       return (
