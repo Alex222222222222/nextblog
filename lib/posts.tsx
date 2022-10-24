@@ -6,22 +6,11 @@ import matter from "gray-matter";
 import { remark } from "remark";
 import html from "remark-html"
 
-const postsDirectory = (process.cwd()+'/posts');
+import { PostData, PostDisplayData } from "../interface/post";
 
-export type PostData = {
-      id: string;
-      title: string;
-      date:Date;
-      author: string;
-      category: string[];
-      tag: string[];
-      hidden: boolean;
-      excerpt: string;
-      ogImage: string;
-      content: string;
-}
+const postsDirectory = (process.cwd() + '/posts');
 
-export function getSortedPostData():PostData[] {
+export function getSortedPostData(): PostData[] {
       // Get file names under /posts
       const fileNames = fs.readdirSync(postsDirectory);
       const allPostsData = fileNames.map((fileName: string): PostData => {
@@ -46,15 +35,15 @@ export function getSortedPostData():PostData[] {
 
             // get category
             const categoryAll: string = matterResult.data["category"];
-            const category: string[] = ((categoryAll)?(categoryAll.split(",")):[]);
+            const category: string[] = ((categoryAll) ? (categoryAll.split(",")) : []);
 
             // get tag
             const tagAll: string = matterResult.data["tag"];
-            const tag: string[] = ((tagAll)?(tagAll.split(",")):[]);
+            const tag: string[] = ((tagAll) ? (tagAll.split(",")) : []);
 
             // get hidden
             const hiddenS: string = matterResult.data["hidden"];
-            const hidden: boolean = ((hiddenS)?hiddenS.toLowerCase() == 'true':false);
+            const hidden: boolean = ((hiddenS) ? hiddenS.toLowerCase() == 'true' : false);
 
             // get excerpt
             const excerpt: string = matterResult.data['excerpt'];
@@ -81,7 +70,7 @@ export function getSortedPostData():PostData[] {
       });
 
       // Sort posts by date
-      return allPostsData.sort(({ date: a }:PostData, { date: b }:PostData) => {
+      return allPostsData.sort(({ date: a }: PostData, { date: b }: PostData) => {
             if (a < b) {
                   return 1;
             } else if (a > b) {
@@ -92,7 +81,31 @@ export function getSortedPostData():PostData[] {
       });
 }
 
-export default function preBuiltGetPostData() {
-      const allPostData = getSortedPostData
-      
+export function getAllPostIdsFromSortedPostData(): string[] {
+      const allPostsData = getSortedPostData();
+      return allPostsData.map(({ id }: PostData) => {
+            return id
+      });
+}
+
+export function getAllPostDisplayDataFromSortedData(): Map<string, PostDisplayData> {
+      const allPostsData = getSortedPostData();
+      const allPostDisplayData = new Map<string, PostDisplayData>();
+      allPostsData.forEach((postData: PostData) => {
+            if (!postData.hidden) {
+                  allPostDisplayData.set(postData.id, {
+                        id: postData.id,
+                        title: postData.title,
+                        date: postData.date,
+                        author: postData.author,
+                        category: postData.category,
+                        tag: postData.tag,
+                        hidden: postData.hidden,
+                        excerpt: postData.excerpt,
+                        ogImage: postData.ogImage,
+                  })
+            }
+      })
+      return allPostDisplayData;
+
 }

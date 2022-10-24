@@ -3,24 +3,20 @@ import categories from "../../posts/category.json"
 
 import type { NextApiRequest, NextApiResponse } from 'next'
 
-const returnData = postCategoryData()
+import { PostCategorySidebarData } from "../../interface/post";
 
-export type PostCategory = {
-      name: string,
-      icon: string,
-      postsCNT: number,
-}
+const returnData = postCategoryData()
 
 export default function handler(
       req: NextApiRequest,
-            res: NextApiResponse<PostCategory[]>,
+            res: NextApiResponse<PostCategorySidebarData[]>,
 ) {
       res.status(200).json(returnData)
 }
 
-function postCategoryData():PostCategory[]{
+function postCategoryData():PostCategorySidebarData[]{
       const allPostData = getSortedPostData()
-      const allPostCategory = categories.category.map(({ name, icon }): PostCategory => {
+      const allPostCategory = categories.category.map(({ name, icon }): PostCategorySidebarData => {
             return {
                   name,
                   icon,
