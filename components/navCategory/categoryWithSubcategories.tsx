@@ -3,9 +3,7 @@ import LinkCard from "../widgets/linkCard"
 import { useState } from "react";
 import { getSubcategoryByName, getLinkByName } from "../../lib/nav";
 
-import { LayoutGroup, m } from "framer-motion";
-import { off } from "process";
-import { on } from "events";
+import { m } from "framer-motion";
 
 export default function CategoryWithSubcategories(c: {
       name: string;
