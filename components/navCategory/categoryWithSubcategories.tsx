@@ -1,7 +1,9 @@
 import { DynamicIcon } from "../widgets/dynamicIcons";
 import LinkCard from "../widgets/linkCard"
-import { useState } from "react";
-import { getSubcategoryByName, getLinkByName } from "../../lib/nav";
+import { useEffect, useState } from "react";
+import { getSubcategoryByName } from "../../lib/nav";
+
+import LinksOfSubcategory from "./linksOfSubcategory";
 
 import { m } from "framer-motion";
 
@@ -17,7 +19,24 @@ export default function CategoryWithSubcategories(c: {
       }
 
       const subCategory = getSubcategoryByName(c.name)
-      const links = getLinkByName(c.name)
+
+      // get all links of the current subcategory from the api /api/getLinksByCategory
+      const [links, setLinks] = useState<number[]>([])
+      const [reqSuccess, setReq] = useState(false)
+      useEffect(
+            () => {
+                  if (!reqSuccess) {
+                        fetch(`/api/getLinksByCategory?category=${c.name}`)
+                              .then(res => res.json())
+                              .then(
+                                    (result) => {
+                                          setLinks(result)
+                                          setReq(true)
+                                    }
+                              )
+                  }
+            }
+      )
 
       // TODO add animation when open sub category
       return (
@@ -32,10 +51,10 @@ export default function CategoryWithSubcategories(c: {
                         {c.name}
                   </span>
                   <div className="flex max-w-4xl flex-wrap items-center content-start sm:w-full">
-                        {links.map(({ id, url, title, description, icon, tags }): JSX.Element => {
+                        {links.map((value): JSX.Element => {
                               return (
-                                    <div key={"navigationMainPageLinksCard:" + title.toString()}>
-                                          <LinkCard id={id} url={url} title={title} description={description} icon={icon} tags={tags} />
+                                    <div key={"navigationMainPageLinksCard:" + value.toString()}>
+                                          <LinkCard name={value.toString()} />
                                     </div>
                               )
                         })}
@@ -45,7 +64,6 @@ export default function CategoryWithSubcategories(c: {
                         <span
                               className="py-1 px-2 rounded-full bg-zinc-300 dark:bg-zinc-700"
                         >
-
                               {subCategory.map(
                                     ({ name }): JSX.Element => {
                                           return (
@@ -81,29 +99,18 @@ export default function CategoryWithSubcategories(c: {
                   </div>
 
                   {subCategory.map(({ name }): JSX.Element => {
-                        const links = getLinkByName(name)
                         return (
                               <m.div
                                     variants={{
-                                          off: {opacity:[1,0,0,0,0,0], height:0},
-                                          on: {opacity:1, height:"auto"}
+                                          off: { opacity: [1, 0, 0, 0, 0, 0] },
+                                          on: { opacity: 1 }
                                     }}
                                     initial={false}
-                                    animate={(name != currentSubcategory)?"off":"on"}
+                                    hidden={name != currentSubcategory}
+                                    animate={(name != currentSubcategory) ? "off" : "on"}
                                     key={"navigationMainPageDivOfLinksOfSubcategory:" + encodeURI(name)}
                               >
-                                    <div
-                                          className="flex max-w-4xl flex-wrap items-center content-start sm:w-full"
-                                    >
-                                          {links.map(({ id, url, title, description, icon, tags }): JSX.Element => {
-                                                return (
-                                                      <div key={"navigationMainPageLinksCard:" + id.toString()}>
-                                                            <LinkCard id={id} url={url} title={title} description={description} icon={icon} tags={tags} />
-                                                      </div>
-                                                )
-                                          })}
-
-                                    </div>
+                                    <LinksOfSubcategory name={name} />
                               </m.div>
                         )
                   })}

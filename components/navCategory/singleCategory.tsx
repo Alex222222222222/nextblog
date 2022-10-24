@@ -1,6 +1,7 @@
 import { DynamicIcon } from "../widgets/dynamicIcons";
 import LinkCard from "../widgets/linkCard"
-import { getLinkByName } from "../../lib/nav";
+
+import { useEffect,useState } from "react";
 
 export default function SingleCategory(c: {
       name: string;
@@ -8,7 +9,25 @@ export default function SingleCategory(c: {
       icon: string
       hidden: boolean;
 }): JSX.Element {
-      const links = getLinkByName(c.name)
+
+      // get links of the current category from the api /api/getLinksByCategory
+      const [links, setLinks] = useState<number[]>([])
+      const [reqSuccess, setReq] = useState(false)
+      useEffect(
+            () => {
+                  if (!reqSuccess) {
+                  fetch(`/api/getLinksByCategory?category=${c.name}`)
+                        .then(res => res.json())
+                        .then(
+                              (result) => {
+                                    setLinks(result)
+                                    setReq(true)
+                              }
+                        )
+                  }
+            }
+      )
+      
 
       return (
             <>
@@ -22,10 +41,10 @@ export default function SingleCategory(c: {
                         {c.name}
                   </span>
                   <div className="flex max-w-4xl flex-wrap items-center content-start sm:w-full">
-                        {links.map(({id,url,title,description,icon,tags}): JSX.Element => {
+                        {links.map((value): JSX.Element => {
                               return (
-                                    <div key={"navigationMainPageLinksCard:" + title.toString()}>
-                                          <LinkCard id={id} url={url} title={title} description={description} icon={icon} tags={tags} />
+                                    <div key={"navigationMainPageLinksCard:" + value.toString()}>
+                                          <LinkCard name={value.toString()} />
                                     </div>
                               )
                         })}

@@ -46,16 +46,7 @@ function getLinkData(id: string): URLLink {
       useEffect(
             () => {
                   if (!success) {
-                        fetch("/api/getLinkData",
-                              {
-                                    method: 'POST',
-                                    body: JSON.stringify(
-                                          {
-                                                id: id,
-                                          }
-                                    ),
-                              }
-                        )
+                        fetch(`/api/getLinkData?id=${id}`)
                               .then((res) => res.json())
                               .then(
                                     (data) => {

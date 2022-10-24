@@ -1,15 +1,23 @@
 import Link from "next/link";
 import { BsFillArrowRightCircleFill } from "react-icons/bs"
 
+import {URLLink, blankLink} from "../../interface/link"
+import { useEffect, useState } from "react";
 
-export default function LinkCard(l: {
-      id: number;
-      url: string;
-      title: string;
-      description: string;
-      icon: string;
-      tags: string[];
+export default function LinkCard({name}:{
+      name:string
 }): JSX.Element {
+
+      const [l, setLink] = useState<URLLink>(blankLink)
+
+      useEffect(
+            () => {
+                  fetch(`/api/getLinkData?id=${name}`)      
+                  .then(res => res.json())
+                  .then(data => setLink(data))
+            }
+      )
+
       return (
             <div
                   className="w-60 py-2 text-left my-1 h-24 px-3
@@ -42,7 +50,7 @@ export default function LinkCard(l: {
                   <div className="flex">
                         <p className="mt-1 flex-nowrap w-52 text-sm flex overflow-x-scroll scrollbar-hide">
                               {
-                                    l.tags.map((value): JSX.Element => {
+                                    l.tags?.map((value): JSX.Element => {
                                           return (
                                                 <span key={"mainNavigationPageInsideLinkCardTags:" + value}>
                                                       <Link href={"/tags#" + encodeURI(value)}>

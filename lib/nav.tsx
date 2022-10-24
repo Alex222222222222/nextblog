@@ -30,23 +30,27 @@ export function getSubcategoryByName(name: string): {
       return res
 }
 
-export function getLinkByName(name: string):{
-      id: number;
-      url:string;
-      title: string;
-      description: string;
-      icon: string
-      tags:string[];
-      category:string[];
-}[]{
-      var res = []
-      for (let l of nav.links) {
-            for (let cName of l.category){
-                  if (name == cName) {
-                        const _ = res.push(l)
-                  }
-            }
-      }
+const allLinksOfCategory: Map<string, number[]> = getAllLinksOfCategory()
 
-      return res
+function getAllLinksOfCategory():Map<string,number[]> {
+      const links: Map<string, number[]> = new Map()
+      nav.links.forEach(
+            (link, index) => {
+                  link.category.forEach(
+                        (category) => {
+                              if (links.has(category)) {
+                                    links.get(category)?.push(index)
+                              } else {
+                                    links.set(category, [index])
+                              }
+                        }
+                  )
+            }
+      )
+
+      return links
+}
+
+export function getLinkByCategory(name: string):number[]{
+      return allLinksOfCategory.get(name) ?? []
 }
