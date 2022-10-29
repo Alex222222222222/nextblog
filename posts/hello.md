@@ -5,6 +5,8 @@ author: 'Alex222222222222'
 category: 'default,default1'
 tag: 'tag,tag1'
 hidden: 'false'
+ogImage: '/posts/1.png'
+excerpt: 'is the pre-rendering method that generates the HTML at is the pre-rendering method that generates the HTML on'
 ---
 
 Next.js has two forms of pre-rendering: **Static Generation** and **Server-side Rendering**. The difference is in **when** it generates the HTML for a page.
