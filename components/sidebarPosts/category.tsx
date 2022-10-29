@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { pathPostCategory } from "../../lib/route";
 import { DynamicIcon } from "../widgets/dynamicIcons"
 
 export default function SingleCategory(c: {
@@ -7,7 +8,7 @@ export default function SingleCategory(c: {
       cnt:number;
 }): JSX.Element {
       return (
-            <Link href={"/post/category" + "#" + encodeURI(c.name)}>
+            <Link href={pathPostCategory+ encodeURI(c.name)}>
                   <a className="flex sticky top-0 justify-between px-2 items-center backdrop-blur-sm w-full text-lg">
                         <span className="flex sticky top-0 items-center backdrop-blur-sm w-full">
                               <DynamicIcon name={c.icon} />

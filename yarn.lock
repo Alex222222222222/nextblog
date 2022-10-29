@@ -292,6 +292,13 @@ bail@^2.0.0:
   resolved "https://registry.yarnpkg.com/bail/-/bail-2.0.2.tgz#d26f5cd8fe5d6f832a31517b9f7c356040ba6d5d"
   integrity sha512-0xO6mYd7JB2YesxDKplafRpsiOzPt9V02ddPCLbY1xYGPOX24NTyN50qnUxgCPcSoYMhKpAuBTjQoRZCAkUDRw==
 
+base32-encode@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/base32-encode/-/base32-encode-2.0.0.tgz#f029bea7d1db2ecc95df5c1d0a6038a39354029a"
+  integrity sha512-mlmkfc2WqdDtMl/id4qm3A7RjW6jxcbAoMjdRmsPiwQP0ufD4oXItYMnPgVHe80lnAIy+1xwzhHE1s4FoIceSw==
+  dependencies:
+    to-data-view "^2.0.0"
+
 binary-extensions@^2.0.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/binary-extensions/-/binary-extensions-2.2.0.tgz#75f502eeaf9ffde42fc98829645be4ea76bd9e2d"
@@ -1331,6 +1338,11 @@ tailwindcss@^3.1.2:
     postcss-value-parser "^4.2.0"
     quick-lru "^5.1.1"
     resolve "^1.22.1"
+
+to-data-view@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/to-data-view/-/to-data-view-2.0.0.tgz#4cc3f5c9eb59514a7436fc54c587c3c34c9b1d60"
+  integrity sha512-RGEM5KqlPHr+WVTPmGNAXNeFEmsBnlkxXaIfEpUYV0AST2Z5W1EGq9L/MENFrMMmL2WQr1wjkmZy/M92eKhjYA==
 
 to-regex-range@^5.0.1:
   version "5.0.1"

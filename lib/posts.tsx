@@ -6,7 +6,8 @@ import matter from "gray-matter";
 import { remark } from "remark";
 import html from "remark-html"
 
-import { PostData, PostDisplayData } from "../interface/post";
+import { PostData, PostDisplayData, PostCategorySidebarData } from "../interface/post";
+import base32Encode from "base32-encode";
 
 const postsDirectory = (process.cwd() + '/posts');
 
@@ -28,7 +29,8 @@ export function getSortedPostData(): PostData[] {
             const date: Date = new Date(matterResult.data["date"]);
 
             // combine the file data and title to get the id
-            const id: string = encodeURI(date.toUTCString + " " + title);
+            const enc = new TextEncoder()
+            const id: string = base32Encode(Uint8Array.from(enc.encode(date.toUTCString() + " " + title)),'RFC4648');
 
             // get author
             const author: string = matterResult.data["author"];
@@ -91,21 +93,75 @@ export function getAllPostIdsFromSortedPostData(): string[] {
 export function getAllPostDisplayDataFromSortedData(): Map<string, PostDisplayData> {
       const allPostsData = getSortedPostData();
       const allPostDisplayData = new Map<string, PostDisplayData>();
+      console.log(allPostsData.length);
       allPostsData.forEach((postData: PostData) => {
-            if (!postData.hidden) {
-                  allPostDisplayData.set(postData.id, {
-                        id: postData.id,
-                        title: postData.title,
-                        date: postData.date,
-                        author: postData.author,
-                        category: postData.category,
-                        tag: postData.tag,
-                        hidden: postData.hidden,
-                        excerpt: postData.excerpt,
-                        ogImage: postData.ogImage,
-                  })
-            }
+            console.log(postData.id);
+            allPostDisplayData.set(postData.id, {
+                  id: postData.id,
+                  title: postData.title,
+                  date: postData.date.toUTCString(),
+                  author: postData.author,
+                  category: postData.category,
+                  tag: postData.tag,
+                  hidden: postData.hidden,
+                  excerpt: postData.excerpt,
+                  ogImage: postData.ogImage,
+            })
       })
       return allPostDisplayData;
 
+}
+
+export function getAllCategoryOfPosts(): string[] {
+      const allPostsData = getSortedPostData();
+      const allCategoryOfPosts = new Set<string>();
+      allPostsData.forEach((postData: PostData) => {
+            postData.category.forEach((category: string) => {
+                  allCategoryOfPosts.add(category);
+            })
+      })
+      return Array.from(allCategoryOfPosts);
+}
+
+export function getAllTagOfPosts(): string[] {
+      const allPostsData = getSortedPostData();
+      const allTagOfPosts = new Set<string>();
+      allPostsData.forEach((postData: PostData) => {
+            postData.tag.forEach((tag: string) => {
+                  allTagOfPosts.add(tag);
+            })
+      })
+      return Array.from(allTagOfPosts);
+}
+
+export function getAllPostIDOfCategory(category: string): string[] {
+      const allPostsData = getSortedPostData();
+      const allPostIDOfCategory = new Set<string>();
+      allPostsData.forEach((postData: PostData) => {
+            if (postData.category.includes(category)) {
+                  allPostIDOfCategory.add(postData.id);
+            }
+      })
+      return Array.from(allPostIDOfCategory);
+}
+
+export function getAllPostIDOfTag(tag: string): string[] {
+      const allPostsData = getSortedPostData();
+      const allPostIDOfTag = new Set<string>();
+      allPostsData.forEach((postData: PostData) => {
+            if (postData.tag.includes(tag)) {
+                  allPostIDOfTag.add(postData.id);
+            }
+      })
+      return Array.from(allPostIDOfTag);
+}
+
+export function getAllPostDisplayDataOfCategory(category: string): PostDisplayData[] {
+      const allPostIDOfCategory = getAllPostIDOfCategory(category);
+      const allPostDisplayData = getAllPostDisplayDataFromSortedData();
+      const allPostDisplayDataOfCategory = new Map<string, PostDisplayData>();
+      allPostIDOfCategory.forEach((postID: string) => {
+            allPostDisplayDataOfCategory.set(postID, (allPostDisplayData.get(postID)) as PostDisplayData);
+      })
+      return Array.from(allPostDisplayDataOfCategory.values());
 }

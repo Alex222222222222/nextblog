@@ -1,3 +1,5 @@
+import { getAllPostIdsFromSortedPostData } from "../../lib/posts"
+
 export default function Post({post}:{
       post:string
 }):JSX.Element{
@@ -17,14 +19,15 @@ export async function getStaticProps({ params }: {
 }
 
 export async function getStaticPaths() {
+      const ids = getAllPostIdsFromSortedPostData()
       return {
-            paths: [
-                  {
+            paths: ids.map((id) => {
+                  return {
                         params: {
-                              post: "1"
+                              post: encodeURI(id)
                         }
                   }
-            ],
+            }),
             fallback: false,
       }
 }

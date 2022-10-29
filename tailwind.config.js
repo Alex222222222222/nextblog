@@ -3,6 +3,7 @@ module.exports = {
 	important: true,
 	content: [
 		'./pages/**/*.{js,ts,jsx,tsx}',
+		'./pages/**/**/*.{js,ts,jsx,tsx}',
 		'./components/**/*.{js,ts,jsx,tsx}',
 		'./components/**/**/*.{js,ts,jsx,tsx}',
 		'./store/*.{js,ts,jsx,tsx}',
@@ -23,6 +24,12 @@ module.exports = {
 		    height: '12px',        // defaults to half the size; has no effect on the diagonal directions (e.g. 'left-up')
 		    color: 'currentColor',  // defaults to defaultColor
 		  },
+		  'left-sm': {
+			direction: 'left',      // one of 'left', 'right', 'up', 'down', 'left-up', 'left-down', 'right-up', and 'right-down'
+			size: '20px',            // defaults to defaultSize
+			height: '10px',        // defaults to half the size; has no effect on the diagonal directions (e.g. 'left-up')
+			color: 'currentColor',  // defaults to defaultColor
+		    },
 		},
 	    },
 	    variants: {

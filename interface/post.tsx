@@ -20,7 +20,7 @@ export type PostCategorySidebarData = {
 export type PostDisplayData = {
       id: string;
       title: string;
-      date:Date;
+      date:string;
       author: string;
       category: string[];
       tag: string[];

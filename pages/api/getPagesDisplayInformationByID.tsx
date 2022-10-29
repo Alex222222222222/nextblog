@@ -9,11 +9,11 @@ export default function handler(
 	req: NextApiRequest,
 	res: NextApiResponse<PostDisplayData>
 ) {
-      const { post } = req.query;
-      if (allPostDisplayDataFromSortedData.has(post as string)) {
-            res.status(200).json(allPostDisplayDataFromSortedData.get(post as string) as PostDisplayData);
+      const { id } = req.query;
+      if (allPostDisplayDataFromSortedData.has(id as string)) {
+            res.status(200).json(allPostDisplayDataFromSortedData.get(id as string) as PostDisplayData);
       } else {
-            res.status(404).json({} as PostDisplayData);
+            res.status(500).json({} as PostDisplayData);
       }
 	
 }

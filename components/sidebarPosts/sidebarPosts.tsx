@@ -1,6 +1,6 @@
 import { useSidebarContext } from "../../lib/sidebarContext"
 
-import { PostCategory } from "../../pages/api/postCategories"
+import { PostCategorySidebarData } from "../../interface/post"
 
 import { useEffect, useState } from "react"
 import { motion, TargetAndTransition } from "framer-motion"
@@ -15,19 +15,16 @@ export default function SidebarPosts(
       const { sidebarState, changeSidebarState } =
             useSidebarContext()
 
-      const [postIsLoading, setPostLoading] = useState(false)
-      const tempPostCategory: PostCategory[] = []
+      const tempPostCategory: PostCategorySidebarData[] = []
       const [data, setData] = useState(tempPostCategory)
 
       useEffect(() => {
             // if I did not do this, this will kind of constantly refetching for unknown reason
             if (data.length == 0) {
-                  setPostLoading(true)
                   fetch('/api/postCategories')
                         .then((res) => res.json())
                         .then((data) => {
                               setData(data)
-                              setPostLoading(false)
                         })
             }
       }

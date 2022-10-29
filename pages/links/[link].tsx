@@ -106,7 +106,7 @@ export default function URLLinkPage({ link }: {
                                     <div className="flex flex-wrap mt-2">
                                           {l.tags.map((value): JSX.Element => {
                                                 return (
-                                                      <Link href={"/tags#" + encodeURI(value)}>
+                                                      <Link href={"/nav/tag#" + encodeURI(value)}>
                                                             <div
                                                                   className="flex mr-2"
                                                                   key={"linksDetailPageLinkTags:" + l.id.toString() + ":" + value}
@@ -129,7 +129,7 @@ export default function URLLinkPage({ link }: {
                                     <div className="flex flex-wrap mt-2">
                                           {l.category.map((value): JSX.Element => {
                                                 return (
-                                                      <Link href={"/tags#" + encodeURI(value)}>
+                                                      <Link href={"/nav/category#" + encodeURI(value)}>
                                                             <div
                                                                   className="flex mr-2"
                                                                   key={"linksDetailPageLinkTags:" + l.id.toString() + ":" + value}
