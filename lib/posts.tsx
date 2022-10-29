@@ -83,6 +83,15 @@ export function getSortedPostData(): PostData[] {
       });
 }
 
+export function getAllPostDataIndexedByPostId(): Map<string, PostData> {
+      const allPostsData = getSortedPostData();
+      const allPostsDataIndexedByPostId = new Map<string, PostData>();
+      allPostsData.forEach((post: PostData) => {
+            allPostsDataIndexedByPostId.set(post.id, post);
+      });
+      return allPostsDataIndexedByPostId;
+}
+
 export function getAllPostIdsFromSortedPostData(): string[] {
       const allPostsData = getSortedPostData();
       return allPostsData.map(({ id }: PostData) => {

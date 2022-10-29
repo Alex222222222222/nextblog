@@ -49,7 +49,7 @@ export default function PostDetailCard({ id }: {
                                                 className="text-lg"
                                           >
                                                 <Link
-                                                      href={"/posts/" + id}
+                                                      href={"/posts/" + encodeURI(id)}
                                                 >
                                                       <span>
                                                             {postDisplayData.title}
