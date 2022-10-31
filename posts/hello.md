@@ -36,3 +36,7 @@ quote
 ![test](/posts/1.png)
 
 <div> dangerous HTML </div>
+
+$$
+\theta
+$$
