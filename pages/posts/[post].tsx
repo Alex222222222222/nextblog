@@ -62,12 +62,12 @@ export default function Post({ post }: {
                               >
                                     {postData.category.map((category: string) => {
                                           return (
+                                                <>
                                                 <Link href={"/post/category/" + encodeURI(category)}>
                                                       <div
                                                             className="flex mr-2"
                                                             key={"postsCategoryPagePostCategories:" + encodeURI(postData.id) + ":" + encodeURI(category)}
                                                       >
-
                                                             <div className="c-triangle-left-sm text-emerald-400 dark:text-emerald-800" />
                                                             <div className="grid justify-center h-5 items-center bg-emerald-400 dark:bg-emerald-800">
                                                                   <div className="mx-2">
@@ -77,6 +77,7 @@ export default function Post({ post }: {
 
                                                       </div>
                                                 </Link>
+                                                </>
                                           )
                                     })}
                               </div>) : (<></>)}
@@ -85,6 +86,7 @@ export default function Post({ post }: {
                               >
                                     {postData.tag.map((tag: string) => {
                                           return (
+                                                <>
                                                 <Link href={"/post/category/" + encodeURI(tag)}>
                                                       <div
                                                             className="flex mr-2"
@@ -100,6 +102,7 @@ export default function Post({ post }: {
 
                                                       </div>
                                                 </Link>
+                                                </>
                                           )
                                     })}
                               </div>) : (<></>)}
@@ -118,6 +121,11 @@ export default function Post({ post }: {
                               <div
                                     className="text-xs text-gray-500 dark:text-gray-400"
                               >
+                                    <div
+                                          className="border-l-4 border-gray-300 pl-4"
+                                    >
+
+                                    </div>
                                     <span>
                                           {dateData}
                                     </span>
@@ -138,13 +146,10 @@ export default function Post({ post }: {
                               className="text-sm text-gray-500 dark:text-gray-400"
                         >
                               <div
-                                    className={markdownStyles['markdown']}
                                     dangerouslySetInnerHTML={{ __html: postData.content }}
                               />
                         </div>
-
                   </div>
-
             </div>
 
       </>)

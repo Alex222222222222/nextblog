@@ -31,7 +31,7 @@ export function SubCategory(c: {
 				{
 					// subcategory main item
 				}
-				<a className="flex sticky top-0 justify-between px-2 items-center backdrop-blur-sm w-full text-lg">
+				<div className="flex sticky top-0 justify-between px-2 items-center backdrop-blur-sm w-full text-lg">
 					<Link href={"/nav/category" + "#" + encodeURI(c.name)}>
 						<m.span
 							whileTap={{scale:0.7}}
@@ -46,7 +46,7 @@ export function SubCategory(c: {
 							<FaAngleRight />
 						</m.div>
 					</span>
-				</a>
+				</div>
 				<m.ul animate={categoryOpen ? {} : { opacity: 0, height: 0 }} transition={{ duration: 0.1 }}>
 					{
 						// subcategory sub items

@@ -3,11 +3,17 @@ import fs from "fs"
 
 import matter from "gray-matter";
 
-import { remark } from "remark";
-import html from "remark-html"
-
-import { PostData, PostDisplayData, PostCategorySidebarData } from "../interface/post";
+import { PostData, PostDisplayData, PostCategorySidebarData, blankPostData } from "../interface/post";
 import base32Encode from "base32-encode";
+
+import { unified } from 'unified'
+import remarkParse from 'remark-parse'
+import remarkRehype from 'remark-rehype'
+import rehypeFormat from 'rehype-format'
+import rehypeStringify from 'rehype-stringify'
+import rehypeRaw from 'rehype-raw'
+import rehypeRewrite from 'rehype-rewrite';
+
 
 const postsDirectory = (process.cwd() + '/posts');
 
@@ -15,6 +21,11 @@ export function getSortedPostData(): PostData[] {
       // Get file names under /posts
       const fileNames = fs.readdirSync(postsDirectory);
       const allPostsData = fileNames.map((fileName: string): PostData => {
+            // test if the file is a markdown file, if not return blankPostData
+            if (path.extname(fileName) !== ".md") {
+                  return blankPostData;
+            }
+
             // Read markdown file as string
             const fullPath = path.join(postsDirectory, fileName);
             const fileContents = fs.readFileSync(fullPath, 'utf8');
@@ -30,7 +41,7 @@ export function getSortedPostData(): PostData[] {
 
             // combine the file data and title to get the id
             const enc = new TextEncoder()
-            const id: string = base32Encode(Uint8Array.from(enc.encode(date.toUTCString() + " " + title)),'RFC4648');
+            const id: string = base32Encode(Uint8Array.from(enc.encode(date.toUTCString() + " " + title)), 'RFC4648');
 
             // get author
             const author: string = matterResult.data["author"];
@@ -54,7 +65,113 @@ export function getSortedPostData(): PostData[] {
             const ogImage: string = matterResult.data['ogImage'];
 
             // get html content
-            const content = remark().use(html).processSync(matterResult.content);
+            const content = unified()
+                  .use(remarkParse)
+                  .use(remarkRehype, { allowDangerousHtml: true })
+                  .use(rehypeRaw)
+                  .use(rehypeFormat)
+                  .use(rehypeRewrite, {
+                        rewrite: (node) => {
+                              if (node.type === 'element' && (node.properties)) {
+                                    switch (node.tagName) {
+                                          case 'a':
+                                                break;
+                                          case 'img':
+                                                node.properties.loading = 'lazy';
+                                                break;
+                                          case 'h1':
+                                                if (node.children[0].type === 'text') {
+                                                      node.properties.id = node.children[0].value;
+                                                }
+                                                node.properties.className = 'text-3xl font-bold mt-6 mb-4 leading-snug';
+                                                break;
+                                          case 'h2':
+                                                if (node.children[0].type === 'text') {
+                                                      node.properties.id = node.children[0].value;
+                                                }
+                                                node.properties.className = 'text-2xl font-bold mt-5 mb-3 leading-snug';
+                                                break;
+                                          case 'h3':
+                                                if (node.children[0].type === 'text') {
+                                                      node.properties.id = node.children[0].value;
+                                                }
+                                                node.properties.className = 'text-xl font-bold mt-4 mb-2 leading-snug';
+                                                break;
+                                          case 'h4':
+                                                if (node.children[0].type === 'text') {
+                                                      node.properties.id = node.children[0].value;
+                                                }
+                                                node.properties.className = 'text-lg font-bold mt-3 mb-1 leading-snug';
+                                                break;
+                                          case 'h5':
+                                                if (node.children[0].type === 'text') {
+                                                      node.properties.id = node.children[0].value;
+                                                }
+                                                node.properties.className = 'text-lg font-bold mt-2 mb-px leading-snug';
+                                                break;
+                                          case 'h6':
+                                                if (node.children[0].type === 'text') {
+                                                      node.properties.id = node.children[0].value;
+                                                }
+                                                node.properties.className = 'text-lg font-bold mt-1 mb-px leading-snug';
+                                                break;
+                                          case 'blockquote':
+                                                node.properties.className = 'border-l-4 border-gray-300 pl-4';
+                                                break;
+                                          case 'ul':
+                                                node.properties.className = 'list-disc ml-5';
+                                                break;
+                                          case 'ol':
+                                                node.properties.className = 'list-decimal ml-5';
+                                                break;
+                                          case 'li':
+                                                node.properties.className = 'my-1';
+                                                break;
+                                          case 'p':
+                                                node.properties.className = 'my-2 text-base';
+                                                break;
+                                          case 'table':
+                                                node.properties.className = 'table-auto';
+                                                break;
+                                          case 'thead':
+                                                node.properties.className = 'bg-gray-100';
+                                                break;
+                                          case 'tbody':
+                                                node.properties.className = 'bg-white';
+                                                break;
+                                          case 'tr':
+                                                node.properties.className = 'border-b border-gray-200';
+                                                break;
+                                          case 'th':
+                                                node.properties.className = 'px-4 py-2';
+                                                break;
+                                          case 'td':
+                                                node.properties.className = 'px-4 py-2';
+                                                break;
+                                          case 'pre':
+                                                node.properties.className = 'bg-gray-100 rounded-md p-1 dark:bg-zinc-700 p-2';
+                                                break;
+                                          case 'code':
+                                                node.properties.className = '';
+                                                break;
+                                          case 'div':
+                                                if (node.properties.className == 'footnotes') {
+                                                      node.properties.className = 'text-sm';
+                                                } else {
+                                                      node.properties.className = "text-base"
+                                                }
+                                                break;
+                                          case 'hr':
+                                                node.properties.className = 'border-gray-300 my-4';
+                                                break;
+                                          default:
+                                                break;
+                                    }
+                              }
+                        }
+                  })
+                  .use(rehypeStringify, { allowDangerousHtml: true })
+                  .processSync(matterResult.content)
 
             // Combine the data with the id
             return {
@@ -71,8 +188,11 @@ export function getSortedPostData(): PostData[] {
             };
       });
 
+      // filter out blankPostData
+      const allPostsDataFiltered = allPostsData.filter((post) => post.id !== blankPostData.id);
+
       // Sort posts by date
-      return allPostsData.sort(({ date: a }: PostData, { date: b }: PostData) => {
+      return allPostsDataFiltered.sort(({ date: a }: PostData, { date: b }: PostData) => {
             if (a < b) {
                   return 1;
             } else if (a > b) {
@@ -102,9 +222,7 @@ export function getAllPostIdsFromSortedPostData(): string[] {
 export function getAllPostDisplayDataFromSortedData(): Map<string, PostDisplayData> {
       const allPostsData = getSortedPostData();
       const allPostDisplayData = new Map<string, PostDisplayData>();
-      console.log(allPostsData.length);
       allPostsData.forEach((postData: PostData) => {
-            console.log(postData.id);
             allPostDisplayData.set(postData.id, {
                   id: postData.id,
                   title: postData.title,

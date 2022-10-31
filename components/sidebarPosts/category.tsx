@@ -9,7 +9,7 @@ export default function SingleCategory(c: {
 }): JSX.Element {
       return (
             <Link href={pathPostCategory+ encodeURI(c.name)}>
-                  <a className="flex sticky top-0 justify-between px-2 items-center backdrop-blur-sm w-full text-lg">
+                  <div className="flex sticky top-0 justify-between px-2 items-center backdrop-blur-sm w-full text-lg">
                         <span className="flex sticky top-0 items-center backdrop-blur-sm w-full">
                               <DynamicIcon name={c.icon} />
                               <span className="px-2">{c.name}</span>
@@ -17,7 +17,7 @@ export default function SingleCategory(c: {
                         <span className="px-2.5 py-0.5 my-0.5 rounded-full bg-gray-100 dark:bg-gray-600">
                               {c.cnt}
                         </span>
-                  </a>
+                  </div>
             </Link>
       )
 }

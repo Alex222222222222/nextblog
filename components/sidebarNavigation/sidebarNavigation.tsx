@@ -54,20 +54,20 @@ export default function SidebarNavigation(): JSX.Element {
                                     <hr className="py-px"></hr>
 
                                     <Link href={"/nav/category"}>
-                                          <a className="flex sticky top-0 justify-between px-2 items-center backdrop-blur-sm w-full text-lg">
+                                          <div className="flex sticky top-0 justify-between px-2 items-center backdrop-blur-sm w-full text-lg">
                                                 <span className="flex sticky top-0 items-center backdrop-blur-sm w-full">
                                                       <BiCategory />
                                                       <span className="px-2">All Categories</span>
                                                 </span>
-                                          </a>
+                                          </div>
                                     </Link>
                                     <Link href={"/nav/tag"}>
-                                          <a className="flex sticky top-0 justify-between px-2 items-center backdrop-blur-sm w-full text-lg">
+                                          <div className="flex sticky top-0 justify-between px-2 items-center backdrop-blur-sm w-full text-lg">
                                                 <span className="flex sticky top-0 items-center backdrop-blur-sm w-full">
                                                       <BiCategory />
                                                       <span className="px-2">All Tags</span>
                                                 </span>
-                                          </a>
+                                          </div>
                                     </Link>
 
                                     <hr className="py-px"></hr>
