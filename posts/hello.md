@@ -33,4 +33,6 @@ code block
 quote 
 > quote
 
-![test](/img/posts/1.png)
+![test](/posts/1.png)
+
+<div> dangerous HTML </div>
