@@ -38,5 +38,6 @@ quote
 <div> dangerous HTML </div>
 
 $$
-\theta
+\theta(a) =1
 $$
+
